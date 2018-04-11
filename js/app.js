@@ -11,8 +11,37 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 var info = database.ref('convenios');
-/*Función para obtener los datos*/
-info.on('value', function(datos) {
-  data = datos.val();
-  console.log(data);
+
+
+// Filtro por Empresa
+function filterCompany(company) {
+  let resultCompany = [];
+  info.on('value', function (datos) {
+    data = datos.val();
+    data.forEach(element => {
+      if (element.Empresa == company)
+        resultCompany.push(element);
+
     });
+    localStorage.setItem('result', JSON.stringify(resultCompany))
+  });
+
+}
+
+function filterVigence(date) {
+  let resultDateVig = [];
+  
+    info.on('value', function (datos) {
+      data = datos.val();
+      data.forEach(element => {
+        if((element.Vigencia).toString().substr(-4)=== date) {
+          resultDateVig.push(element);
+        }
+        
+      });
+  
+      localStorage.setItem('resultDateVig', JSON.stringify(resultDateVig))
+    });
+  
+}
+
