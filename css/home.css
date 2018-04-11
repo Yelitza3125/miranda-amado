@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+/*Clases generales*/
+
+body, html, section {
+  height: 100%;
+}
+
+.text-blue-miranda {
+  color: rgb( 65, 85, 99);
+}
+
+.text-gold-amado {
+  color: rgb(213, 120, 0)
+}
+
+/*Búsqueda*/
+
+.form-control {
+  width: 75%;
+}
+
+
+
+/*Logotipo*/
+
+.logo {
+  width: 50%;
+  margin: 2em 0 2em 0;
+}
