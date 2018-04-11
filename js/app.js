@@ -15,4 +15,21 @@ var info = database.ref('convenios');
 info.on('value', function(datos) {
   data = datos.val();
   console.log(data);
+});
+
+function filterSuscription(){
+  let result=[];
+  info.on('value', function(datos) {
+    data = datos.val();
+    console.log(data);
+    data.forEach(function(element){
+      if((element.Suscripción).split){
+      console.log((element.Suscripción).substr(0,4))
+      }
+      // result.push(element);
     });
+  });
+  return(result)
+}
+filterSuscription()
+
