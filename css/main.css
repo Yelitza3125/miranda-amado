@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+/*Clases generales*/
+
+body, html, section {
+  height: 100%;
+}
+
+.text-blue-miranda {
+  color: rgb( 65, 85, 99);
+}
+
+.text-gold-amado {
+  color: rgb(213, 120, 0)
+}
+/*Logotipo*/
+
+.logo {
+  width: 70%;
+  margin: 4em 0 2em 0;
+}
+
+/*Texto de saludo*/
+
+p.welcome {
+  text-transform: uppercase;
+  font-size: 1.5em;
+  margin: 1em 0 1em 0;
+
+}
+
+.btn {
+  background-color: rgb(213, 120, 0);
+  color: #ffffff;
+}
+/*Diseño para desktop*/
+
+@media (min-width: 992px) { 
+
+  body {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .main {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .flex-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .logo {
+    width: 80%;
+    margin: 0 0 1.5em 0;
+    
+  }
+
+  .border-form {
+    border: 3px solid rgb(213, 120, 0);
+    border-radius: 10px;
+    padding: 6em 2em;
+  }
+
+  p.welcome {
+    font-size: 2.5em;
+    margin: 0 0 1.5em 0;
+  }
+
+  .text-p {
+    font-size: 1.3em;
+  }
+
+  .btn {
+    margin: 3em 0 0em 0;
+  }
+}
