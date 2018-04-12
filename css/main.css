@@ -124,6 +124,9 @@ p.welcome {
     vertical-align: middle;
     padding: 2px;
     border-color:rgb(213, 120, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center
   }
 
   .icon-gmail {
