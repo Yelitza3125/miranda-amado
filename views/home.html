@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet">
+  <!--Importando bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/token-input.css" type="text/css" />
+  <link rel="stylesheet" href="../css/home.css">
+  <title>Home</title>
+</head>
+<body>
+
+  <!--nav -->
+  
+  <nav class="navbar navbar-expand-lg navbar-light d-block d-sm-none">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        
+          <input class="form-control mr-sm-2 token-input" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" id="buscar" type="button">
+            <i class="fas fa-search"></i>
+          </button>
+      </form>
+      
+      <div class="btn-group grupo-filtro">
+        <button type="button" class="btn filtro">Filtrar por</button>
+        <button type="button" class="btn dropdown-toggle dropdown-toggle-split filtro-arrow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div class="dropdown-menu filtro-menu">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label text-blue-miranda" for="customCheck1">Suscripción</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label text-blue-miranda" for="customCheck1">Vigencia</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label text-blue-miranda" for="customCheck1">Empresa</label>
+          </div>
+          <div class="custom-control custom-checkbox text-blue-miranda">
+            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label text-blue-miranda" for="customCheck1">Sindicato</label>
+          </div>
+          <div class="custom-control custom-checkbox text-blue-miranda">
+            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label" for="customCheck1">Industria</label>
+          </div>
+          <button type="button" class="btn btn-primary btn-block btn-filtro">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!--nav desktop-->
+
+  <nav class="navbar navbar-light justify-content-between d-none d-sm-block">
+      <a class="navbar-brand">
+      <img src="../assets/docs/logo-white.png" alt="" class="logo-white"> </a>
+      <form class="form-inline right">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-comparar" data-toggle="modal" data-target="#exampleModal" >Buscar</button>
+      </form>
+    </nav>
+
+  <!--imagen-->
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 img-mobile">
+        <p class="text-blue-miranda">Creando acciones conjuntas para el beneficio mutuo</p>
+      </div>
+    </div>
+  </div>
+
+  <!--Búsqueda y comparación-->
+<div class="over container  mt-3 d-none d-sm-block">
+  <div class="float-r">
+     
+    
+        <div class="form-check form-check-inline pt-2">
+            <input class="form-check-input" type="checkbox" value="" id="company-check">
+            <label class="form-check-label" for="company-check">Empresa</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkbox1" value="option1">
+            <label class="form-check-label" for="checkbox1">Sindicato</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkbox2" value="option2">
+            <label class="form-check-label" for="checkbox2">Industria</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="suscription-check">
+            <label class="form-check-label" for="checkbox3">Suscripción</label>
+          </div>
+          <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="vigencia-check">
+              <label class="form-check-label" for="checkbox3">Vigencia</label>
+            </div>
+      <div class="float-r" >
+        <button class="btn btn-border" data-toggle="modal" data-target="#exampleModal" >Filtrar</button>
+      </div>
+    </div>
+   
+</div>
+
+  <div class="container">
+    
+      <div class="row">
+          <div class="col-12 display-container mb-3">
+              <i class="fas fa-plus-circle icon-plus"></i>
+              <button class="btn  btn-comparar">
+                Comparar
+              </button>
+      
+            </div>
+      </div>
+        
+      
+    </div>
+    
+<div class="container">
+  <div class="row" id="container-box" ></div>
+</div>
+
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Filtros</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group hide" id="company"  >
+                <label for="select-company">Empresa</label>
+                <select class="form-control company-select" id="select-company">
+                    <option value="">Selecciona una Empresa</option>
+                  <option value="APM Terminals Insland Services S.A.">APM Terminals Insland Services S.A.</option>
+                  <option value="Papelera Nacional S.A. - PANASA">Papelera Nacional S.A. - PANASA</option>
+                  <option value="Sociedad Agrícola Drokasa S.A.">Sociedad Agrícola Drokasa S.A.</option>
+                  <option value="Hoteles Sheraton del Perú S.A.C.">Hoteles Sheraton del Perú S.A.C.</option>
+                  <option value="Enel Distribución Perú S.A.A">Enel Distribución Perú S.A.A</option>
+                  <option value="APM Terminals Callao S.A.">APM Terminals Callao S.A.</option>
+                  <option value="Luz del Sur. S.A.">Luz del Sur. S.A.</option>
+                  <option value="Statkraft Perú S.A.">Statkraft Perú S.A.</option>
+                  <option value="Red de Energía del Perú S.A.">Red de Energía del Perú S.A.</option>
+                  <option value="Club Regatas Lima">Club Regatas Lima</option>
+                  <option value="Electro Dunas S.A.A.">Electro Dunas S.A.A.</option>
+                  <option value="Edelnor S.A.A.">Edelnor S.A.A.</option>
+                </select>
+              </div>
+          <div class="form-group hide"  id="select-syndicates">
+            <label for="select-2">Sindicato</label>
+            <select class="form-control" id="select-2">
+              <option>STAPMTIS</option>
+              <option>SINTRAPANA</option>
+              <option>SINTRAGROKASA</option>
+              <option>SINTRAHOSHEP</option>
+              <option>SUTRAEAC</option>
+              <option>SUTRAMPORPC</option>
+              <option>SUTEECEA</option>
+              <option>SITSTATKRAFT</option>
+              <option>SUTREL</option>
+              <option>SUTREP</option>
+              <option>SINTRASUR</option>
+              <option>SINERELIMA</option>
+              <option>SINORELIMA</option>
+              <option>SINEDUNAS</option>
+              <option>SECCIÓN SINDICAL DE SUTREL</option>
+              <option>SINTRAGEL</option>
+              <option>SITECASA</option>
+              <option>SINTRACLUNA</option>
+              <option>SINTRAAOPIP</option>
+            </select>
+          </div>
+          <div class="form-group hide"  id="select-industries">
+            <label for="select-3">Industria</label>
+            <select class="form-control" id="select-3">
+              <option>Logistica y transporte</option>
+              <option>Papel y derivados</option>
+              <option>Agroindustria</option>
+              <option>Hoteles</option>
+              <option>Energía</option>
+              <option>Clubes</option>
+            </select>
+          </div>
+          <div class="form-group hide" id="suscripcion">
+            <label for="exampleFormControlSelect3">Suscripción</label>
+            <select class="form-control" id="suscripcion1">
+              <option>2018</option>
+              <option>2017</option>
+              <option>2016</option>
+              <option>2015</option>
+              <option>2014</option>
+              <option>2013</option>
+            </select>
+          </div>
+          <div class="form-group hide" id="vigencia">
+              <label for="exampleFormControlSelect3">Suscripción</label>
+              <select class="form-control" id="vigencia1">
+                  <option value="">Selecciona un año</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+                <option value="2016">2016</option>
+                <option value="2015">2015</option>
+                <option value="2014">2014</option>
+                <option value="2013">2013</option>
+              </select>
+            </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal"  id="filter-type">Filtrar</button>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script> 
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <script type="text/javascript" src="../js/jquery.tokeninput.js"></script>
+  <script src="../js/home.js"></script>
+  <script src="../js/app.js"></script>
+
+</body>
+</html>
