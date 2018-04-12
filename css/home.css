@@ -109,8 +109,8 @@ background-color: rgb( 65, 85, 99);
 
 
 hr {
-  height: 1px;
-  background-color: #fff;
+  height: 0.8px;
+  background-color: #FF9800;
 }
 
 .btn-detalles{
