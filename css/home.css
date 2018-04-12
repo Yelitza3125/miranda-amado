@@ -266,6 +266,25 @@ input[type=checkbox]
   display: none;
 }
 
+/* estilos de compare */
+ 
+.card-header {
+  background-color: rgb( 65, 85, 99);
+  color:white;
+  font-weight: bolder;
+  font-size: 1.2em;
+}
+
+.Compar {
+  background-color: rgb(214, 222, 236);
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.box {
+  margin: 0 8px 8px 0;
+  padding: 0;
+}
 
 @media (min-width: 992px) { 
 
@@ -295,13 +314,14 @@ input[type=checkbox]
 .mostazaborder{
   background-color: #d57800;
   color: white;
-  padding: 5px;
+  padding: 7px;
 }
 
 .whiteborder{
   background-color: white;
   color: #415563;
   border: 2px solid #d57800;
+  padding: 7px;
 }
 
 
