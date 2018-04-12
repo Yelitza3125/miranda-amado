@@ -170,4 +170,17 @@ background-color: rgb( 65, 85, 99);
 }
 
 }  
+.mostazaborder{
+  background-color: #d57800;
+  color: white;
+  padding: 5px;
+}
+
+.whiteborder{
+  background-color: white;
+  color: #415563;
+  border: 2px solid #d57800;
+}
+
+
 

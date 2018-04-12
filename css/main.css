@@ -139,18 +139,4 @@ p.welcome {
   width: 200px;
   margin: 0 auto;
 }
-div#compare-box {
-  padding-left: 70px;
-}
-.mostazaborder{
-  background-color: #d57800;
-  color: white;
-  padding: 5px;
-}
-
-.whiteborder{
-  background-color: white;
-  color: #415563;
-  border: 2px solid #d57800;
-}
 

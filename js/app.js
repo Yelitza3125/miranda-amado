@@ -14,6 +14,7 @@ let info = database.ref('convenios');
 /*Función para obtener los datos*/
 info.on('value', function (datos) {
   data = datos.val();
+  console.log(data);
   function listEmpresas() {
     let Type = '';
     let ObjectTypes = [];
