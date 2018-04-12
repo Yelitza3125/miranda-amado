@@ -14,6 +14,7 @@ let info = database.ref('convenios');
 /*Función para obtener los datos*/
 info.on('value', function (datos) {
   data = datos.val();
+
   function listEmpresas() {
     let Type = '';
     let ObjectTypes = [];
@@ -39,6 +40,7 @@ info.on('value', function (datos) {
       searchingText: 'Buscando...',
       tokenLimit: 1
     });
+
   function filterCompany(company) {
     let resultCompany = [];
     info.on('value', function (datos) {
@@ -82,21 +84,21 @@ info.on('value', function (datos) {
   });
 
 });
-  
 
-function filterSuscription(){
-  let result=[];
-  info.on('value', function(datos) {
+
+function filterSuscription() {
+  let result = [];
+  info.on('value', function (datos) {
     data = datos.val();
     console.log(data);
-    data.forEach(function(element){
-      if((element.Suscripción).split){
-      console.log((element.Suscripción).substr(0,4))
+    data.forEach(function (element) {
+      if ((element.Suscripción).split) {
+        console.log((element.Suscripción).substr(0, 4))
       }
       // result.push(element);
     });
   });
-  return(result)
+  return (result)
 }
 filterSuscription()
 
@@ -118,18 +120,42 @@ function filterCompany(company) {
 
 function filterVigence(date) {
   let resultDateVig = [];
-  
-    info.on('value', function (datos) {
-      data = datos.val();
-      data.forEach(element => {
-        if((element.Vigencia).toString().substr(-4)=== date) {
-          resultDateVig.push(element);
-        }
-        
-      });
-  
-      localStorage.setItem('resultDateVig', JSON.stringify(resultDateVig))
+
+  info.on('value', function (datos) {
+    data = datos.val();
+    data.forEach(element => {
+      if ((element.Vigencia).toString().substr(-4) === date) {
+        resultDateVig.push(element);
+      }
+
     });
-  
+
+    localStorage.setItem('resultDateVig', JSON.stringify(resultDateVig))
+  });
+
 }
 
+// Mostrar los 20 primeros
+
+info.on('value', function (datos) {
+  data = datos.val();
+  let news = data.slice(0,19);
+  news.forEach(element => {
+    let fecha = element.Suscripción;
+    let fechames = fecha.slice(0, 10);
+    let template = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3  " >
+    <div class="card-header">${element.Empresa}</div>
+    <div class="card-body">
+      <h5 class="card-title">${element.Industria}</h5>
+      <p class="card-text">${fechames}</p>
+    </div>
+  </div>
+  </div>`
+  $('#container-box').append(template);
+  $('.box').click(function () {
+    window.open(`${element.URL}`, '_blank');
+  });
+  });
+
+  
+});
