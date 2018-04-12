@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <!--Importando bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/token-input.css" type="text/css" />
   <link rel="stylesheet" href="../css/home.css">
   <title>Home</title>
 </head>
@@ -21,18 +21,113 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
        <!-- <a class="navbar-brand" href="#">Hidden brand</a> -->
         
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+          <input class="form-control mr-sm-2 token-input" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" id="buscar" type="button">
+              <i class="fas fa-search"></i>
+
+          </button>
       </div>
     </nav>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+      <label class="form-check-label" for="defaultCheck1">Empresa</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="checkbox1" value="option1">
+      <label class="form-check-label" for="checkbox1">Sindicato</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="checkbox2" value="option2">
+      <label class="form-check-label" for="checkbox2">Industria</label>
+    </div>
+<div>
+  <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Buscar</button>
+</div>
+<div class="container"  >
+  <div class="row" id="container-box" >
 
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Filtros</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group" id="company">
+                <label for="exampleFormControlSelect1">Empresa</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>APM Terminals Insland Services S.A.</option>
+                  <option>Papelera Nacional S.A. - PANASA</option>
+                  <option>Sociedad Agrícola Drokasa S.A.</option>
+                  <option>Hoteles Sheraton del Perú S.A.C.</option>
+                  <option>Enel Distribución Perú S.A.A</option>
+                  <option>APM Terminals Callao S.A.</option>
+                  <option>Luz del Sur. S.A.</option>
+                  <option>Statkraft Perú S.A.</option>
+                  <option>Red de Energía del Perú S.A.</option>
+                  <option>Club Regatas Lima</option>
+                  <option>Electro Dunas S.A.A.</option>
+                  <option>Edelnor S.A.A.</option>
+                </select>
+              </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">Sindicato</label>
+            <select class="form-control" id="exampleFormControlSelect2">
+              <option>STAPMTIS</option>
+              <option>SINTRAPANA</option>
+              <option>SINTRAGROKASA</option>
+              <option>SINTRAHOSHEP</option>
+              <option>SUTRAEAC</option>
+              <option>SUTRAMPORPC</option>
+              <option>SUTEECEA</option>
+              <option>SITSTATKRAFT</option>
+              <option>SUTREL</option>
+              <option>SUTREP</option>
+              <option>SINTRASUR</option>
+              <option>SINERELIMA</option>
+              <option>SINORELIMA</option>
+              <option>SINEDUNAS</option>
+              <option>SECCIÓN SINDICAL DE SUTREL</option>
+              <option>SINTRAGEL</option>
+              <option>SITECASA</option>
+              <option>SINTRACLUNA</option>
+              <option>SINTRAAOPIP</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect3">Industria</label>
+            <select class="form-control" id="exampleFormControlSelect3">
+              <option>Logistica y transporte</option>
+              <option>Papel y derivados</option>
+              <option>Agroindustria</option>
+              <option>Hoteles</option>
+              <option>Energía</option>
+              <option>Clubes</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Filtrar</button>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script> 
   <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <script type="text/javascript" src="../js/jquery.tokeninput.js"></script>
   <script src="../js/home.js"></script>
+  <script src="../js/app.js"></script>
+
 </body>
 </html>
