@@ -27,7 +27,7 @@ info.on('value', function (datos) {
           name: Type
         });
     }
-    console.log(ObjectTypes);
+
     return ObjectTypes;
   }
 
@@ -94,7 +94,7 @@ function filterSuscription() {
   let result = [];
   info.on('value', function (datos) {
     data = datos.val();
-    console.log(data);
+   
     data.forEach(function (element) {
       if ((element.Suscripción).split) {
         console.log((element.Suscripción).substr(0, 4))
@@ -164,13 +164,21 @@ info.on('value', function (datos) {
   
 });
 
-// Seleccionar tipo de filtro
- //  Evento change al checkbox sindicato
-const checkCompany =$('#company-check');
+// Seleccionar tipo de filtro solo Empresa
 
- checkCompany.addEventListener('change', function() {
-  if(checkCompany.checked === true) {
-    console.log('true');
+const checkCompany = $('#company-check');
+
+ checkCompany.on('change', function() {
+  if(checkCompany[0].checked === true ){
+    $('#company').addClass( "show" );
+    $('#company').removeClass( "hide" );
+  }
+  else{
+    $('#company').removeClass( "show" );
+    $('#company').addClass( "hide" );
   }
   
 });
+
+// Selección de Empresa
+
