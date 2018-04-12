@@ -47,5 +47,4 @@ compare();
 
 
 $('#ViewReport').click(function () {
-    pdfCompare();
   });

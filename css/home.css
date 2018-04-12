@@ -12,6 +12,11 @@
   top: 7px;
 }
 
+embed{
+  height: 600px;
+  width: 100%;
+}
+
 /*Clases generales*/
 
 body, html, section {
@@ -68,10 +73,106 @@ background-color: rgb( 65, 85, 99);
   width: 100%;
 }
 
+/*Estilo conteiner mayor */
+
+.container-convenio {
+  height: auto;
+  
+  border-radius: 10px;
+  border: 2px solid rgb(213, 120, 0);
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 0 2em 0;
+}
+
+.titulo-container {
+  background-color: rgb(221, 221, 221);
+  border-bottom: 2px solid rgb(213, 120, 0);
+  border-radius: 10px 10px 0 0;
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.titulo-text {
+  width: 80%;
+  margin: 30px 0px 10px 15px;
+  font-size: 18px;
+}
+
+.convenio-detalles {
+  margin-top: 20px;
+  width: 100%;  
+}
+
+.convenio-detalles p {
+  margin-left: 15px;
+  margin-bottom: 0;
+}
+
+
+
+hr {
+  height: 0.8px;
+  background-color: #FF9800;
+}
+
+.btn-detalles{
+  margin-top: 25px;
+  background-color: rgb( 65, 85, 99);
+  color: #fff;
+  
+}
+
+.btn-add {
+  background-color: rgb( 65, 85, 99);
+  color: white !important;
+  border-radius: 7px;
+  border:none;
+  padding: 9px;
+  margin-right: 5px;
+  
+}
+
+.btn-add:hover {
+  text-decoration: none;
+}
+
+input[type=checkbox]
+{
+  -ms-transform: scale(1.6); /* IE */
+  -moz-transform: scale(1.6); /* FF */
+  -webkit-transform: scale(1.6); /* Safari y Chrome */
+  -o-transform: scale(1.6); /* Opera */
+  margin-right: 7px;
+  border-color: #FF9800 !important;
+}
+
+.btn-pdf {
+  width: 40%;
+  margin-top: 25px;
+ background-color: #fff;
+ border: 2px solid rgb( 65, 85, 99);
+}
+
+.botones-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+
+
 .filtro, .filtro-arrow .busqueda, .btn-filtro, .btn-comparar {
   background-color: rgb(213, 120, 0);
   color: #ffffff;
   border: none;
+}
+
+.btn-comparar{
+  padding: 5px 30px;
 }
 
 .btn-border{
@@ -91,6 +192,11 @@ background-color: rgb( 65, 85, 99);
 
 .custom-checkbox {
   margin-left: 5px;
+}
+
+.logo-white {
+  width: 35%;
+  
 }
 
 /*Imagen*/
@@ -153,13 +259,17 @@ background-color: rgb( 65, 85, 99);
 
   .navbar {
     background-color: rgb( 65, 85, 99);
+    
   }
 
   .img-mobile{
     height: 45vh;
   }
   .img-mobile p{
-    font-size: 23px;
+    font-size: 3em;
+    text-align: left;
+    width: 50%;
+
   }
   
 /*Logotipo*/

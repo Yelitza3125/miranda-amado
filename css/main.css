@@ -11,6 +11,11 @@ body, html, section {
   height: 100%;
 }
 
+.title-detail {
+  font-size: 21px;
+  color:  rgb(213, 120, 0);
+}
+
 .text-blue-miranda {
   color: rgb( 65, 85, 99);
 }
@@ -38,11 +43,30 @@ p.welcome {
 
 }
 
+.block{
+  display: block
+}
+
+
+
 .btn {
   background-color: rgb(213, 120, 0);
   color: #ffffff;
 }
 
+.heigth1{
+  height: 30px;
+
+}
+
+.rela{
+  position: relative;
+  bottom: 10px;
+}
+
+.rela:hover{
+  color: white;
+}
 /*Diseño para desktop*/
 
 @media (min-width: 992px) { 
@@ -131,12 +155,12 @@ p.welcome {
    display: inline-flex;
    margin: 10px;
   }
-}
-.headline-divider2 {
-  display: block;
-  background-color: #f0f4f5;
-  border: 4px solid rgb(213, 120, 0);
-  width: 200px;
-  margin: 0 auto;
-}
 
+  /* estilos de campos del detalle */
+
+  .detaill-campo {
+    font-size: 14px;
+  }
+
+  
+}

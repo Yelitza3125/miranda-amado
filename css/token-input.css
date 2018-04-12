@@ -16,6 +16,7 @@
         padding: 3px 8px;
         background-color: white;
         margin: 2px 0;
+        width: 16em;
       }
       
       li.token-input-token-bootstrap {
@@ -29,6 +30,7 @@
         border-radius: 3px;
         float: left;
         white-space: nowrap;
+        
       }
       
       li.token-input-token-bootstrap p {

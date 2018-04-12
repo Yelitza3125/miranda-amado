@@ -108,12 +108,7 @@ info.on('value', function (datos) {
 });
 
 
-$('#suscripcion1').click(function () {
-  // ("#sprints").change(function () {
-  nsprint = $('select[id=suscripcion1]').val();
-  console.log(nsprint);
-  // $('#sprints').val($(this).val());
-})
+
 
 
 
@@ -203,38 +198,39 @@ info.on('value', function (datos) {
   data = datos.val();
   // Mostrar los 20 primeros
   let news = data.slice(0, 19);
+  
   news.forEach(element => {
     let fecha = element.Suscripción;
     let fechames = fecha.slice(0, 10);
-    let template3 = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
-         
-      <div class="card-header">
-      <div class="row">
-      <div class="col-9 col-lg-9">
-      <p>${element.Empresa}</p>
-      </div>
-      <div class="col-3 col-lg-3">
-        <div class="form-check">
-         <label class="form-check-label">
-          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]-1}>
-        </label>
-        </div>
-      </div>
-      </div>
-      </div>
-      
-      
+    let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
+    <div class="titulo-container">
+     <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+     <input type="checkbox" class="nroconvenio" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+    </div> 
+     
+    <div class="convenio-detalles">
+     <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+     <p class="text-gold-amado">Industria:
+     <span class="text-blue-miranda">${element.Industria}</span> </p>
+    </div>
   
-   
-    <div class="card-body">
-      <h5 class="card-title">${element.Industria}</h5>
-      <p class="card-text">${fechames}</p>
+    <div class="botones-container">
+      <button class="btn btn-detalles btn-view" id=${element["N°"]}>
+      Ver detalles
+      </button>
+      <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+      </button>
     </div>
   </div>
-  </div>`
+  
+  
+  </div>
+    </div>
+   </div>`
+    
 
-    $('#container-box').append(template3);
-    $('.card-body').click(function () {
+    $('#container-box').append(tem);
+    $('.btn-pdf').click(function () {
       window.open(`${element.URL}`, '_blank');
     });
 
@@ -242,9 +238,14 @@ info.on('value', function (datos) {
 
   let resultCompare = [];
 
-
-
-  $('.nroconvenio').click(function () {
+$('body').on('click','.btn-view',function(){
+  window.location.href = '../views/detail.html';
+  console.log(event.target);
+  localStorage.data = JSON.stringify(data);
+  localStorage.idButton = event.target.id;
+});
+$('.nroconvenio').addEventListener("click",function () {
+    alert("hola");
     const checkCompare = $('.nroconvenio');
     let numero = $(this).data("nro");
     if (checkCompare[numero].checked === true) {
@@ -256,7 +257,6 @@ info.on('value', function (datos) {
           resultCompare.push(data[numero]);
          
           }
-        
         });
       });
     } else {
@@ -272,7 +272,9 @@ info.on('value', function (datos) {
       alert("Seleccione minimo 2 convenios");
 
     }
+    else{
     window.location.href = 'compare.html';
+    }
   });
 });
 
@@ -418,41 +420,38 @@ $('#filter-type').on('click', function () {
 
   $('#container-box').empty();
   if (nameSelectCompany === true) {
-    debugger;
+    
     filterCompany(nameCompany);
     let dataResult = localStorage.result;
     let array = JSON.parse(dataResult);
     array.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
-      let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
-         
-      <div class="card-header">
-      <div class="row">
-      <div class="col-9 col-lg-9">
-      <p>${element.Empresa}</p>
+      let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
+      <div class="titulo-container">
+       <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+       <input type="checkbox" class="form-check-input nroconvenio" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+      </div> 
+       
+      <div class="convenio-detalles">
+       <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+       <p class="text-gold-amado">Industria:
+       <span class="text-blue-miranda">${element.Industria}</span> </p>
       </div>
-      <div class="col-3 col-lg-3">
-        <div class="form-check">
-         <label class="form-check-label">
-          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
-        </label>
-        </div>
+    
+      <div class="botones-container">
+        <button class="btn btn-detalles">
+        Ver detalles
+        </button>
+        <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+        </button>
       </div>
       </div>
-      </div>
-      
+     </div>`
       
   
-   
-    <div class="card-body">
-      <h5 class="card-title">${element.Industria}</h5>
-      <p class="card-text">${fechames}</p>
-    </div>
-  </div>
-  </div>`
-      $('#container-box').append(template);
-      $('.card-body').click(function () {
+      $('#container-box').append(tem);
+      $('.btn-pdf').click(function () {
         window.open(`${element.URL}`, '_blank');
       });
     });
@@ -465,18 +464,33 @@ $('#filter-type').on('click', function () {
     arraySyndicate.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
-      let template = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3  " >
-      <div class="card-header">${element.Empresa}</div>
-      <div class="card-body">
-      <h5 class="card-title">${element.Sindicato}</h5>
-      <p class="card-text">${fechames}</p>
-      </div>
-      </div>
-       </div>`
-      $('#container-box').append(template);
-      $('.card-body').click(function () {
-        window.open(`${element.URL}`, '_blank');
-      });
+      let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
+    <div class="titulo-container">
+     <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+     <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+    </div> 
+     
+    <div class="convenio-detalles">
+     <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+     <p class="text-gold-amado">Industria:
+     <span class="text-blue-miranda">${element.Industria}</span> </p>
+    </div>
+  
+    <div class="botones-container">
+      <button class="btn btn-detalles">
+      Ver detalles
+      </button>
+      <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+      </button>
+    </div>
+    </div>
+   </div>`
+    
+
+    $('#container-box').append(tem);
+    $('.btn-pdf').click(function () {
+      window.open(`${element.URL}`, '_blank');
+    });
     });
   }
   // Filtrando empresas según la industria a la que pertenecen
@@ -488,16 +502,31 @@ $('#filter-type').on('click', function () {
     arrayIndustry.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
-      let template2 = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3  " >
-      <div class="card-header">${element.Empresa}</div>
-      <div class="card-body">
-      <h5 class="card-title">${element.Industria}</h5>
-      <p class="card-text">${fechames}</p>
+      let template2 = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
+      <div class="titulo-container">
+       <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+       <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+      </div> 
+       
+      <div class="convenio-detalles">
+       <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+       <p class="text-gold-amado">Industria:
+       <span class="text-blue-miranda">${element.Industria}</span> </p>
+      </div>
+    
+      <div class="botones-container">
+        <button class="btn btn-detalles">
+        Ver detalles
+        </button>
+        <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+        </button>
       </div>
       </div>
-       </div>`
+     </div>`
+      
+  
       $('#container-box').append(template2);
-      $('.card-body').click(function () {
+      $('.btn-pdf').click(function () {
         window.open(`${element.URL}`, '_blank');
       });
     });
@@ -509,36 +538,33 @@ $('#filter-type').on('click', function () {
     array.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
-      let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
-         
-      <div class="card-header">
-      <div class="row">
-      <div class="col-9 col-lg-9">
-      <p>${element.Empresa}</p>
-      </div>
-      <div class="col-3 col-lg-3">
-        <div class="form-check">
-         <label class="form-check-label">
-          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
-        </label>
-        </div>
-      </div>
-      </div>
-      </div>
-      
-      
-  
-   
-    <div class="card-body">
-      <h5 class="card-title">${element.Industria}</h5>
-      <p class="card-text">${fechames}</p>
+      let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
+    <div class="titulo-container">
+     <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+     <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+    </div> 
+     
+    <div class="convenio-detalles">
+     <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+     <p class="text-gold-amado">Industria:
+     <span class="text-blue-miranda">${element.Industria}</span> </p>
     </div>
-   </div>
+  
+    <div class="botones-container">
+      <button class="btn btn-detalles">
+      Ver detalles
+      </button>
+      <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+      </button>
+    </div>
+    </div>
    </div>`
-      $('#container-box').append(template);
-      $('.card-body').click(function () {
-        window.open(`${element.URL}`, '_blank');
-      });
+    
+
+    $('#container-box').append(tem);
+    $('.btn-pdf').click(function () {
+      window.open(`${element.URL}`, '_blank');
+    });
     });
   }
 
@@ -549,32 +575,33 @@ $('#filter-type').on('click', function () {
     array.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
-      let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
-         
-      <div class="card-header">
-      <div class="row">
-      <div class="col-9 col-lg-9">
-      <p>${element.Empresa}</p>
-      </div>
-      <div class="col-3 col-lg-3">
-        <div class="form-check">
-         <label class="form-check-label">
-          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
-        </label>
-        </div>
-      </div>
-      </div>
-      </div>
-    <div class="card-body">
-      <h5 class="card-title">${element.Industria}</h5>
-      <p class="card-text">${fechames}</p>
+      let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
+    <div class="titulo-container">
+     <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+     <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+    </div> 
+     
+    <div class="convenio-detalles">
+     <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+     <p class="text-gold-amado">Industria:
+     <span class="text-blue-miranda">${element.Industria}</span> </p>
     </div>
-   </div>
+  
+    <div class="botones-container">
+      <button class="btn btn-detalles">
+      Ver detalles
+      </button>
+      <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+      </button>
+    </div>
+    </div>
    </div>`
-      $('#container-box').append(template);
-      $('.card-body').click(function () {
-        window.open(`${element.URL}`, '_blank');
-      });
+    
+
+    $('#container-box').append(tem);
+    $('.btn-pdf').click(function () {
+      window.open(`${element.URL}`, '_blank');
+    });
     });
   }
 })
