@@ -51,38 +51,39 @@ info.on('value', function (datos) {
       });
       localStorage.setItem('result', JSON.stringify(resultCompany))
       console.log(resultCompany);
-
+   
+    
       resultCompany.forEach(element => {
+
         let fecha = element.Suscripción;
         let fechames = fecha.slice(0, 10);
         $('#container-box').append(`
         
-        <div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
-         
-      <div class="card-header">
-      <div class="row">
-      <div class="col-9 col-lg-9">
-      <p>${element.Empresa}</p>
+        <div class="col-12 col-lg-4"><div class="container-convenio m-3">
+      <div class="titulo-container">
+       <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+       <input type="checkbox" class="nroconvenio" id="a-${element["N°"]-1}" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+      </div> 
+       
+      <div class="convenio-detalles">
+       <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+       <p class="text-gold-amado">Industria:
+       <span class="text-blue-miranda">${element.Industria}</span> </p>
       </div>
-      <div class="col-3 col-lg-3">
-        <div class="form-check">
-         <label class="form-check-label">
-          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
-        </label>
-        </div>
+    
+      <div class="botones-container">
+        <button class="btn btn-detalles btn-view" id=${element["N°"]}>
+        Ver detalles
+        </button>
+        <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+        </button>
       </div>
-      </div>
-      </div>
-      
-      
-  
-   
-    <div class="card-body">
-      <h5 class="card-title">${element.Industria}</h5>
-      <p class="card-text">${fechames}</p>
     </div>
-  </div>
-  </div>
+    
+    
+    </div>
+      </div>
+     </div>
         `);
 
 
@@ -205,7 +206,7 @@ info.on('value', function (datos) {
     let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
     <div class="titulo-container">
      <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
-     <input type="checkbox" class="nroconvenio" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+     <input type="checkbox" class="nroconvenio" id="a-${element["N°"]-1}" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
     </div> 
      
     <div class="convenio-detalles">
@@ -244,10 +245,13 @@ $('body').on('click','.btn-view',function(){
   localStorage.data = JSON.stringify(data);
   localStorage.idButton = event.target.id;
 });
+
+
 $(document).on('click', '.nroconvenio', function() {
     const checkCompare = $('.nroconvenio');
     let numero = $(this).data("nro");
-    if (checkCompare[numero].checked === true) {
+    let position =$(this).attr("id");
+    if ($('#'+position).prop('checked')) {
       info.on('value', function (datos) {
         data = datos.val();
         data.forEach(elem => {
@@ -429,7 +433,7 @@ $('#filter-type').on('click', function () {
       let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
       <div class="titulo-container">
        <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
-       <input type="checkbox" class="form-check-input nroconvenio" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+       <input type="checkbox" class="nroconvenio" id="a-${element["N°"]-1}" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
       </div> 
        
       <div class="convenio-detalles">
@@ -439,12 +443,16 @@ $('#filter-type').on('click', function () {
       </div>
     
       <div class="botones-container">
-        <button class="btn btn-detalles">
+        <button class="btn btn-detalles btn-view" id=${element["N°"]}>
         Ver detalles
         </button>
         <button class="btn btn-pdf text-blue-miranda"> Ver PDF
         </button>
       </div>
+    </div>
+    
+    
+    </div>
       </div>
      </div>`
       
@@ -464,26 +472,30 @@ $('#filter-type').on('click', function () {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
       let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
-    <div class="titulo-container">
-     <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
-     <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
-    </div> 
-     
-    <div class="convenio-detalles">
-     <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
-     <p class="text-gold-amado">Industria:
-     <span class="text-blue-miranda">${element.Industria}</span> </p>
+      <div class="titulo-container">
+       <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+       <input type="checkbox" class="nroconvenio" id=${element["N°"]-1} aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+      </div> 
+       
+      <div class="convenio-detalles">
+       <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+       <p class="text-gold-amado">Industria:
+       <span class="text-blue-miranda">${element.Industria}</span> </p>
+      </div>
+    
+      <div class="botones-container">
+        <button class="btn btn-detalles btn-view" id=${element["N°"]}>
+        Ver detalles
+        </button>
+        <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+        </button>
+      </div>
     </div>
-  
-    <div class="botones-container">
-      <button class="btn btn-detalles">
-      Ver detalles
-      </button>
-      <button class="btn btn-pdf text-blue-miranda"> Ver PDF
-      </button>
+    
+    
     </div>
-    </div>
-   </div>`
+      </div>
+     </div>`
     
 
     $('#container-box').append(tem);
@@ -504,7 +516,7 @@ $('#filter-type').on('click', function () {
       let template2 = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
       <div class="titulo-container">
        <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
-       <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+       <input type="checkbox" class="nroconvenio" id="a-${element["N°"]-1}" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
       </div> 
        
       <div class="convenio-detalles">
@@ -514,12 +526,16 @@ $('#filter-type').on('click', function () {
       </div>
     
       <div class="botones-container">
-        <button class="btn btn-detalles">
+        <button class="btn btn-detalles btn-view" id=${element["N°"]}>
         Ver detalles
         </button>
         <button class="btn btn-pdf text-blue-miranda"> Ver PDF
         </button>
       </div>
+    </div>
+    
+    
+    </div>
       </div>
      </div>`
       
@@ -538,26 +554,30 @@ $('#filter-type').on('click', function () {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
       let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
-    <div class="titulo-container">
-     <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
-     <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
-    </div> 
-     
-    <div class="convenio-detalles">
-     <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
-     <p class="text-gold-amado">Industria:
-     <span class="text-blue-miranda">${element.Industria}</span> </p>
+      <div class="titulo-container">
+       <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+       <input type="checkbox" class="nroconvenio" id="a-${element["N°"]-1}" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+      </div> 
+       
+      <div class="convenio-detalles">
+       <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+       <p class="text-gold-amado">Industria:
+       <span class="text-blue-miranda">${element.Industria}</span> </p>
+      </div>
+    
+      <div class="botones-container">
+        <button class="btn btn-detalles btn-view" id=${element["N°"]}>
+        Ver detalles
+        </button>
+        <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+        </button>
+      </div>
     </div>
-  
-    <div class="botones-container">
-      <button class="btn btn-detalles">
-      Ver detalles
-      </button>
-      <button class="btn btn-pdf text-blue-miranda"> Ver PDF
-      </button>
+    
+    
     </div>
-    </div>
-   </div>`
+      </div>
+     </div>`
     
 
     $('#container-box').append(tem);
@@ -575,26 +595,30 @@ $('#filter-type').on('click', function () {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
       let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
-    <div class="titulo-container">
-     <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
-     <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
-    </div> 
-     
-    <div class="convenio-detalles">
-     <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
-     <p class="text-gold-amado">Industria:
-     <span class="text-blue-miranda">${element.Industria}</span> </p>
+      <div class="titulo-container">
+       <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+       <input type="checkbox" class="nroconvenio" id="a-${element["N°"]-1}" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+      </div> 
+       
+      <div class="convenio-detalles">
+       <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+       <p class="text-gold-amado">Industria:
+       <span class="text-blue-miranda">${element.Industria}</span> </p>
+      </div>
+    
+      <div class="botones-container">
+        <button class="btn btn-detalles btn-view" id=${element["N°"]}>
+        Ver detalles
+        </button>
+        <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+        </button>
+      </div>
     </div>
-  
-    <div class="botones-container">
-      <button class="btn btn-detalles">
-      Ver detalles
-      </button>
-      <button class="btn btn-pdf text-blue-miranda"> Ver PDF
-      </button>
+    
+    
     </div>
-    </div>
-   </div>`
+      </div>
+     </div>`
     
 
     $('#container-box').append(tem);
