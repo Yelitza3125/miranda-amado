@@ -7,50 +7,79 @@ var config = {
   storageBucket: "miranda-y-amado.appspot.com",
   messagingSenderId: "158203245206"
 };
-  firebase.initializeApp(config);
-  let database = firebase.database();
-  let info = database.ref('/convenios');
-  let lastItem ='';
-  info.on('value', function (datos) {
-    lastItem = datos.val().length;
-    console.log(datos.val());
-    localStorage.setItem('lastItem',lastItem);
-  })
-  // variables
-  let newSuscription = $('#suscripcion-new');
-  let newCompany = $('#empresa-new');
-  let newVigence = $('#vigencia-new');
-  let newSindicato = $('#sindicato-new');
-  let newIndustria = $('#industria-new');
-  let newIncrement = $('#incremento-new');
-  let newBonificacion = $('#bonificacion-new');
+firebase.initializeApp(config);
+
+window.onload = inicializar;
+var fichero;
+var StorageRef;
+function inicializar() {
+  fichero = document.getElementById('fichero');
+  StorageRef = firebase.storage().ref();
+}
+
+
+let database = firebase.database();
+let info = database.ref('/convenios');
+let lastItem = '';
+
+info.on('value', function (datos) {
+  lastItem = datos.val().length;
+  console.log(datos.val());
+  localStorage.setItem('lastItem', lastItem);
+})
+// variables
+let newSuscription = $('#suscripcion-new');
+let newCompany = $('#empresa-new');
+let newVigence = $('#vigencia-new');
+let newSindicato = $('#sindicato-new');
+let newIndustria = $('#industria-new');
+let newIncrement = $('#incremento-new');
+let newBonificacion = $('#bonificacion-new');
+
+
+const id = parseInt(localStorage.getItem('lastItem'));
+console.log(id);
+console.log(parseInt(localStorage.lastItem));
+const register = $('#new-convenio');
+let infos = database.ref('convenios/' + id);
 
 
 
-  const id =  parseInt(localStorage.getItem('lastItem'));
-  console.log(id);
-  console.log(parseInt(localStorage.lastItem));
-  const register = $('#new-convenio');
-  let infos = database.ref('convenios/'+ id );
-  register.on('click',function(){
-     infos.set({
-      Bonificación: newBonificacion.val(), 
-      Empresa: newCompany.val(),
-      Incremento: newIncrement.val(),
-      Industria : newIndustria.val(),
-      "N°": localStorage.getItem('lastItem')+1,
-      Sindicato:newSindicato.val(),
-      Suscripción: newSuscription.val(),
-      Tipo:'Convenio colectivo',
-      Vigencia: newVigence.val(),
-      URL: 'null'
+
+register.on('click', function () {
+  var imageUpload = fichero.files[0];
+  var uploadImages = StorageRef.child('Convenios colectivos/' + imageUpload.name).put(imageUpload);
+  uploadImages.on('state_changed',
+  function (snapshot) {
+  }, function (error) {
+    alert('Hubo un error');
+  }, function () {
+    var downloadURL = uploadImages.snapshot.downloadURL;
+  console.log(downloadURL);
+ 
+  infos.set({
+    Bonificación: newBonificacion.val(),
+    Empresa: newCompany.val(),
+    Incremento: newIncrement.val(),
+    Industria: newIndustria.val(),
+    "N°": localStorage.getItem('lastItem') + 1,
+    Sindicato: newSindicato.val(),
+    Suscripción: newSuscription.val(),
+    Tipo: 'Convenio colectivo',
+    Vigencia: newVigence.val(),
+    URL: downloadURL
 
 
-    }, function () {
-      console.log(infos.Bonificación.length );
-      if( infos.Bonificación.length !== 0 && infos.Empresa.length !== 0 && infos.Incremento.length !== 0 && infos.Industria.length !== 0 && infos["N°"].length !== 0 && infos.Sindicato.length !== 0 && infos.Suscripción.length !== 0 && infos.Vigencia.length !== 0) {
-        console.log('Se registró correctamente');
-      }
-    });
-  })
+  }, function () {
+    $('#success').modal();
+   newSuscription.val('');
+   newCompany.val('');
+   newVigence.val('');
+   newSindicato.val('');
+   newIndustria.val('');
+   newIncrement.val('');
+   newBonificacion.val('');
+  });
+});
+})
 

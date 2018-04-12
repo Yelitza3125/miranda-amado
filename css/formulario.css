@@ -139,3 +139,7 @@ body, html {
     margin: 10px 0 0 0;
   }
 }  
+input#fichero {
+  width: 200px;
+}
+
