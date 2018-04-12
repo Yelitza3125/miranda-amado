@@ -57,6 +57,10 @@ background-color: rgb( 65, 85, 99);
   border-color: #ffffff !important;
 }
 
+.navbar-mobile {
+  margin: 1em 0;
+}
+
 
 /*Filtro */
 
@@ -70,7 +74,7 @@ background-color: rgb( 65, 85, 99);
 }
 
 .filtro-arrow {
-  width: 25%;
+  width: 20%;
 }
 
 .grupo-filtro {
