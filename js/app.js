@@ -163,3 +163,14 @@ info.on('value', function (datos) {
 
   
 });
+
+// Seleccionar tipo de filtro
+ //  Evento change al checkbox sindicato
+const checkCompany =$('#company-check');
+
+ checkCompany.addEventListener('change', function() {
+  if(checkCompany.checked === true) {
+    console.log('true');
+  }
+  
+});
