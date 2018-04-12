@@ -20,6 +20,14 @@ body, html, section {
   color: rgb(213, 120, 0)
 }
 
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
 /*nav*/
 
 .navbar {

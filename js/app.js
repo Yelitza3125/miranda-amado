@@ -94,7 +94,7 @@ function filterSuscription() {
   let result = [];
   info.on('value', function (datos) {
     data = datos.val();
-   
+
     data.forEach(function (element) {
       if ((element.Suscripción).split) {
         console.log((element.Suscripción).substr(0, 4))
@@ -149,33 +149,9 @@ info.on('value', function (datos) {
   data = datos.val();
   // Mostrar los filtros escogidos en el modal
   syndicate.addEventListener('change', function() {
-    if(syndicate.checked === true) {
-      console.log('true');
-     selectSyndicatesContainer.addClass('show');
-     selectSyndicatesContainer.removeClass('hide');
-    }
-
-    if(syndicate.checked === false) {
-      console.log('false');
-      selectSyndicatesContainer.addClass('hide');
-      selectSyndicatesContainer.removeClass('show');
-    }
-  });
-
-  industry.addEventListener('change', function() {
-    if(industry.checked === true) {
-      selectIndustriesContainer.addClass('show');
-      selectIndustriesContainer.removeClass('hide');
-    }
-    if(industry.checked === false) {
-      selectIndustriesContainer.addClass('hide');
-      selectIndustriesContainer.removeClass('show');
-    }
-  });
-
 
   // Mostrar los 20 primeros
-  let news = data.slice(0,19);
+  let news = data.slice(0, 19);
   news.forEach(element => {
     let fecha = element.Suscripción;
     let fechames = fecha.slice(0, 10);
@@ -187,11 +163,11 @@ info.on('value', function (datos) {
     </div>
   </div>
   </div>`
-  $('#container-box').append(template);
-  $('.box').click(function () {
-    window.open(`${element.URL}`, '_blank');
+    $('#container-box').append(template);
+    $('.box').click(function () {
+      window.open(`${element.URL}`, '_blank');
+    });
   });
- });
 
  // Mostrar resultados de búsqueda según la opción escogida
 
@@ -228,28 +204,82 @@ info.on('value', function (datos) {
 });
 
 // Seleccionar tipo de filtro solo Empresa
-
+let nameSelectCompany = false;
 const checkCompany = $('#company-check');
 
- checkCompany.on('change', function() {
+checkCompany.on('change', function () {
+
+  if (checkCompany[0].checked === true) {
+    nameSelectCompany = true;
+    $('#company').addClass("show");
+    $('#company').removeClass("hide");
+  } else {
+    nameSelectCompany = false;
+    $('#company').removeClass("show");
+    $('#company').addClass("hide");
+  }
+
+});
+
+// // Selección de Empresa
+const selectCompany = $('#select-company');
+//  selectCompany.on('change', function(event) {
+//  console.log('asaasasa');
+
+
+
+//  });
+
+let nameCompany = '';
+
+selectCompany.change(function () {
+  let selectName = $('select[id=select-company]').val();
+  nameCompany = selectName;
+
+});
+// Seleccionar tipo de filtro solo por año de suscripcion
+
+const checkSuscripcion = $('#suscription-check');
+
+checkSuscripcion.on('change', function() {
   
-  if(checkCompany[0].checked === true ){
+  if(checkSuscripcion[0].checked === true ){
   
-    $('#company').addClass( "show" );
-    $('#company').removeClass( "hide" );
+    $('#suscripcion').addClass( "show" );
+    $('#suscripcion').removeClass( "hide" );
   }
   else{
-    $('#company').removeClass( "show" );
-    $('#company').addClass( "hide" );
+    $('#suscripcion').removeClass( "show" );
+    $('#suscripcion').addClass( "hide" );
   }
   
 });
 
-// Selección de Empresa
-const selectCompany = $('.company-select');
- selectCompany.on('change', function(event) {
-  if (selectCompany.value === 'c1') {
-    console.log('col')
-  }
 
- });
+
+
+$('#filter-type').on('click', function () {
+  
+   $('#container-box').empty();
+  if (nameSelectCompany === true) {
+    filterCompany(nameCompany);
+    let dataResult = localStorage.result;
+    let array = JSON.parse(dataResult);
+    array.forEach(element => {
+      let fecha = element.Suscripción;
+      let fechames = fecha.slice(0, 10);
+      let template = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3  " >
+   <div class="card-header">${element.Empresa}</div>
+   <div class="card-body">
+     <h5 class="card-title">${element.Industria}</h5>
+     <p class="card-text">${fechames}</p>
+   </div>
+ </div>
+ </div>`
+      $('#container-box').append(template);
+      $('.box').click(function () {
+        window.open(`${element.URL}`, '_blank');
+      });
+    });
+  }
+})
