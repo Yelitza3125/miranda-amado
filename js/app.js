@@ -141,33 +141,43 @@ function filterVigence(date) {
 
 let syndicate = document.getElementById('checkbox1');
 let industry = document.getElementById('checkbox2');
-let selectSyndicates = $('#select-syndicates');
-let selectIndustries = $('#select-industries');
+let selectSyndicatesContainer = $('#select-syndicates');
+let selectIndustriesContainer = $('#select-industries');
+let selectSyndicates = $('#select-2');
+let selectIndustries = $('#select-3');
 info.on('value', function (datos) {
   data = datos.val();
   // Mostrar los filtros escogidos en el modal
   syndicate.addEventListener('change', function() {
     if(syndicate.checked === true) {
-     selectSyndicates.addClass('show');
-     selectSyndicates.removeClass('hide');
+     selectSyndicatesContainer.addClass('show');
+     selectSyndicatesContainer.removeClass('hide');
     }
 
     if(syndicate.checked === false) {
-      selectSyndicates.addClass('hide');
-      selectSyndicates.removeClass('show');
+      selectSyndicatesContainer.addClass('hide');
+      selectSyndicatesContainer.removeClass('show');
     }
   });
 
   industry.addEventListener('change', function() {
     if(industry.checked === true) {
-      selectIndustries.addClass('show');
-      selectIndustries.removeClass('hide');
+      selectIndustriesContainer.addClass('show');
+      selectIndustriesContainer.removeClass('hide');
     }
     if(industry.checked === false) {
-      selectIndustries.addClass('hide');
-      selectIndustries.removeClass('show');
+      selectIndustriesContainer.addClass('hide');
+      selectIndustriesContainer.removeClass('show');
     }
   });
+
+  // Mostrar resultados de búsqueda según la opción escogida
+
+  selectSyndicates.change(function () {
+    nsyndicate = $('select[id=select-2]').val();
+  
+    selectSyndicates.val($(this).val())});
+    
   // Mostrar los 20 primeros
   let news = data.slice(0,19);
   news.forEach(element => {
