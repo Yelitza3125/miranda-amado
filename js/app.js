@@ -14,7 +14,6 @@ let info = database.ref('convenios');
 /*Función para obtener los datos*/
 info.on('value', function (datos) {
   data = datos.val();
-
   function listEmpresas() {
     let Type = '';
     let ObjectTypes = [];
@@ -27,7 +26,7 @@ info.on('value', function (datos) {
           name: Type
         });
     }
-
+    console.log(ObjectTypes);
     return ObjectTypes;
   }
 
@@ -75,7 +74,7 @@ info.on('value', function (datos) {
     });
 
   }
-  $('#buscar').click(function () {
+  $('.buscar').click(function () {
     let company = $('.token-input').tokenInput('get')[0]['name'];
     let inputvalue = $('.token-input').tokenInput('get');
     if (inputvalue.length === 0) {
@@ -213,20 +212,28 @@ info.on('value', function (datos) {
     });
 
   });
-  let resultCompare = [];
 
+  let resultCompare = [];
 
 
 
   $('.nroconvenio').click(function () {
     const checkCompare = $('.nroconvenio');
     let numero = $(this).data("nro") - 1;
+    alert(numero);
     if (checkCompare[numero].checked === true) {
-
-      data.forEach(element => {
-        if (element['N°'] == id)
-          resultCompare.push(element);
+      info.on('value', function (datos) {
+        data = datos.val();
+        data.forEach(elem => {
+         
+          if (elem['N°'] == numero){
+          resultCompare.push(data[numero]);
+         
+          }
+        });
       });
+
+ 
     }
     else {
       resultCompare.pop();
@@ -244,27 +251,7 @@ info.on('value', function (datos) {
     window.location.href = 'compare.html';
   });
 
-  const compare = () => {
-    
-    let ObjConvenios = jQuery.parseJSON(localStorage.resultCompare);
-    console.log(ObjConvenios);
-    
-    ObjConvenios.forEach(element => {
-      let fecha = element.Suscripción;
-      let fechames = fecha.slice(0, 10);
-    let template = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3" >
-      <div class="card-header">${element.Empresa}</div>   
-    <div class="card-body">
-      <h5 class="card-title">${element.Industria}</h5>
-      <p class="card-text">${fechames}</p>
-    </div>
-  </div>
-  </div>`
 
-    $('#compare-box').append(template);
-  });
-};
-  compare();
 });
 
 
