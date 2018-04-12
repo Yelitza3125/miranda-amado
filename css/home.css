@@ -125,7 +125,29 @@ hr {
   
 }
 
+.btn-add {
+  background-color: rgb( 65, 85, 99);
+  color: white !important;
+  border-radius: 7px;
+  border:none;
+  padding: 9px;
+  margin-right: 5px;
+  
+}
 
+.btn-add:hover {
+  text-decoration: none;
+}
+
+input[type=checkbox]
+{
+  -ms-transform: scale(1.6); /* IE */
+  -moz-transform: scale(1.6); /* FF */
+  -webkit-transform: scale(1.6); /* Safari y Chrome */
+  -o-transform: scale(1.6); /* Opera */
+  margin-right: 7px;
+  border-color: #FF9800 !important;
+}
 
 .btn-pdf {
   width: 40%;
@@ -147,6 +169,10 @@ hr {
   background-color: rgb(213, 120, 0);
   color: #ffffff;
   border: none;
+}
+
+.btn-comparar{
+  padding: 5px 30px;
 }
 
 .btn-border{
@@ -240,7 +266,10 @@ hr {
     height: 45vh;
   }
   .img-mobile p{
-    font-size: 23px;
+    font-size: 3em;
+    text-align: left;
+    width: 50%;
+
   }
   
 /*Logotipo*/
