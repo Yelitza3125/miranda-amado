@@ -245,7 +245,8 @@ checkSuscripcion.on('change', function() {
 
 
 $('#filter-type').on('click', function () {
-  $('#container-box').empty();
+  
+   $('#container-box').empty();
   if (nameSelectCompany === true) {
     filterCompany(nameCompany);
     let dataResult = localStorage.result;
