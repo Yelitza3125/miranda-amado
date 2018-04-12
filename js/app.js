@@ -108,11 +108,11 @@ info.on('value', function (datos) {
 });
 
 
-$('#suscripcion1').click(function(){
+$('#suscripcion1').click(function () {
   // ("#sprints").change(function () {
-    nsprint = $('select[id=suscripcion1]').val();
+  nsprint = $('select[id=suscripcion1]').val();
   console.log(nsprint);
-    // $('#sprints').val($(this).val());
+  // $('#sprints').val($(this).val());
 })
 
 
@@ -126,12 +126,12 @@ function filterSuscription(date) {
     data.forEach(function (element) {
       if ((element.Suscripción).split()) {
         // console.log((element.Suscripción).substr(0, 4))
-      result.push((element.Suscripción).substr(0, 4));
-      
+        result.push((element.Suscripción).substr(0, 4));
+
       }
     });
     localStorage.setItem('result', JSON.stringify(result))
-    
+
   });
 }
 
@@ -251,8 +251,7 @@ info.on('value', function (datos) {
         if (element['N°'] == id)
           resultCompare.push(element);
       });
-    }
-    else {
+    } else {
       resultCompare.pop();
 
     }
@@ -269,10 +268,10 @@ info.on('value', function (datos) {
   });
 
   const compare = () => {
-    
+
     let ObjConvenios = jQuery.parseJSON(localStorage.resultCompare);
     console.log(ObjConvenios);
-    
+
     ObjConvenios.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
@@ -303,9 +302,9 @@ info.on('value', function (datos) {
   </div>
   </div>`
 
-    $('#compare-box').append(template);
-  });
-};
+      $('#compare-box').append(template);
+    });
+  };
   compare();
 });
 
@@ -348,26 +347,25 @@ selectCompany.change(function () {
 
 const checkSuscripcion = $('#suscription-check');
 
-checkSuscripcion.on('change', function() {
-  
-  if(checkSuscripcion[0].checked === true ){
-  
-    $('#suscripcion').addClass( "show" );
-    $('#suscripcion').removeClass( "hide" );
+checkSuscripcion.on('change', function () {
+
+  if (checkSuscripcion[0].checked === true) {
+
+    $('#suscripcion').addClass("show");
+    $('#suscripcion').removeClass("hide");
+  } else {
+    $('#suscripcion').removeClass("show");
+    $('#suscripcion').addClass("hide");
   }
-  else{
-    $('#suscripcion').removeClass( "show" );
-    $('#suscripcion').addClass( "hide" );
-  }
-  
+
 });
 
 
 
 
 $('#filter-type').on('click', function () {
-  
-   $('#container-box').empty();
+
+  $('#container-box').empty();
   if (nameSelectCompany === true) {
     filterCompany(nameCompany);
     let dataResult = localStorage.result;
