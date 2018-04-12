@@ -9,6 +9,7 @@
 
 body, html, section {
   height: 100%;
+  width: 100%
 }
 
 .text-blue-miranda {
@@ -19,27 +20,113 @@ body, html, section {
   color: rgb(213, 120, 0)
 }
 
-/*Búsqueda*/
+/*nav*/
+
+.navbar {
+
+background-color: rgb( 65, 85, 99); 
+}  
+
+
+.navbar-toggler {
+  background-color: #fff;
+  border-color: #ffffff !important;
+}
+
+
+/*Filtro */
 
 .form-control {
+  width: 100%;
+}
+
+.filtro {
+  text-align: left;
   width: 75%;
 }
 
+.filtro-arrow {
+  width: 25%;
+}
+
+.grupo-filtro {
+  width: 100%;
+}
+
+.filtro, .filtro-arrow .busqueda, .btn-filtro, .btn-comparar {
+  background-color: rgb(213, 120, 0);
+  color: #ffffff;
+  border: none;
+}
+
+.filtro-menu {
+  min-width: 100%;
+}
 
 
+.btn-filtro {
+  margin: 1em 0 1em 0; 
+}
+
+.custom-checkbox {
+  margin-left: 5px;
+}
+
+/*Imagen*/
+
+.img-mobile {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 30vh;
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-image: url("../assets/images/law.jpg");
+}
+
+.back-gris {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 30vh;
+  background-color: rgba(213, 120, 0, 0.2);
+}
+
+.img-mobile p {
+  font-size: 18px;
+  width: 70%;
+  margin-left: 1em;
+  
+}
+
+/*Botones de agregar convenio y comparación*/
+
+.display-container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;  
+}
+
+.icon-plus {
+  font-size: 40px;
+  color: rgb( 65, 85, 99);
+  margin-right: 1em;
+}
+
+
+@media (min-width: 992px) { 
+
+  .navbar {
+    background-color: rgb( 65, 85, 99);
+  }
+
+  
 /*Logotipo*/
 
-.logo {
-  width: 50%;
+.logo-white {
+  width: 35%;
   margin: 2em 0 2em 0;
 }
 
-/*Display*/
+}  
 
-.show{
-  display: block;
-
-}
-.hide{
-  display: none;
-}

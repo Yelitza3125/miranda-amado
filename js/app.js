@@ -218,7 +218,10 @@ const checkCompany = $('#company-check');
 });
 
 // Selección de Empresa
-// select.addEventListener('change', function(event) {
+const selectCompany = $('.company-select');
+ selectCompany.on('change', function(event) {
+  if (selectCompany.value === 'c1') {
+    console.log('col')
+  }
 
-
-// });
+ });
