@@ -8,8 +8,9 @@ news.forEach(element => {
    
   let fecha = element.Suscripción;
   let fechames = fecha.slice(0, 10);
- 
-  let template = `<div class="col-12 col-lg-10 offset-1 box"><div class="card bg-light mb-3" >
+ let viewPdf = `<embed src=${element.URL}  type='application/pdf'>`;
+ let title = `<p class="title-detail text-center">Convenio Colectivo de ${element.Empresa} con el Sindicato ${element.Sindicato}</p>`
+  let template = `<div class="col-12 col-lg-12  box p-0"><div class="card bg-light mb-3" >
        
     <div class="card-header">
     <div class="row">
@@ -54,6 +55,8 @@ news.forEach(element => {
 
 </div>`
 $('#container-detaill').append(template);
+$('#title').append(title);
+$('#viewpdf').append(viewPdf);
 }
 
 });
