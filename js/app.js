@@ -57,14 +57,32 @@ info.on('value', function (datos) {
         let fechames = fecha.slice(0, 10);
         $('#container-box').append(`
         
-        <div class="col-6 col-lg-3 box"><div class="card bg-light mb-3  " >
-        <div class="card-header">${element.Empresa}</div>
-        <div class="card-body">
-          <h5 class="card-title">${element.Industria}</h5>
-          <p class="card-text">${fechames}</p>
+        <div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
+         
+      <div class="card-header">
+      <div class="row">
+      <div class="col-9 col-lg-9">
+      <p>${element.Empresa}</p>
+      </div>
+      <div class="col-3 col-lg-3">
+        <div class="form-check">
+         <label class="form-check-label">
+          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
+        </label>
         </div>
       </div>
       </div>
+      </div>
+      
+      
+  
+   
+    <div class="card-body">
+      <h5 class="card-title">${element.Industria}</h5>
+      <p class="card-text">${fechames}</p>
+    </div>
+  </div>
+  </div>
         `);
 
 
@@ -186,19 +204,25 @@ info.on('value', function (datos) {
   news.forEach(element => {
     let fecha = element.Suscripción;
     let fechames = fecha.slice(0, 10);
-    let template = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3" >
-    <div class="row">
-      <div class="col-lg-9">
-      <div class="card-header">${element.Empresa}</div>
+    let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
+         
+      <div class="card-header">
+      <div class="row">
+      <div class="col-9 col-lg-9">
+      <p>${element.Empresa}</p>
       </div>
-      <div class="col-lg-3">
+      <div class="col-3 col-lg-3">
         <div class="form-check">
          <label class="form-check-label">
           <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
         </label>
         </div>
       </div>
-    </div>
+      </div>
+      </div>
+      
+      
+  
    
     <div class="card-body">
       <h5 class="card-title">${element.Industria}</h5>
@@ -252,8 +276,26 @@ info.on('value', function (datos) {
     ObjConvenios.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
-    let template = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3" >
-      <div class="card-header">${element.Empresa}</div>   
+      let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
+         
+      <div class="card-header">
+      <div class="row">
+      <div class="col-9 col-lg-9">
+      <p>${element.Empresa}</p>
+      </div>
+      <div class="col-3 col-lg-3">
+        <div class="form-check">
+         <label class="form-check-label">
+          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
+        </label>
+        </div>
+      </div>
+      </div>
+      </div>
+      
+      
+  
+   
     <div class="card-body">
       <h5 class="card-title">${element.Industria}</h5>
       <p class="card-text">${fechames}</p>
@@ -333,16 +375,34 @@ $('#filter-type').on('click', function () {
     array.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
-      let template = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3  " >
-   <div class="card-header">${element.Empresa}</div>
-   <div class="card-body">
-     <h5 class="card-title">${element.Industria}</h5>
-     <p class="card-text">${fechames}</p>
-   </div>
- </div>
- </div>`
+      let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
+         
+      <div class="card-header">
+      <div class="row">
+      <div class="col-9 col-lg-9">
+      <p>${element.Empresa}</p>
+      </div>
+      <div class="col-3 col-lg-3">
+        <div class="form-check">
+         <label class="form-check-label">
+          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
+        </label>
+        </div>
+      </div>
+      </div>
+      </div>
+      
+      
+  
+   
+    <div class="card-body">
+      <h5 class="card-title">${element.Industria}</h5>
+      <p class="card-text">${fechames}</p>
+    </div>
+  </div>
+  </div>`
       $('#container-box').append(template);
-      $('.box').click(function () {
+      $('.card-body').click(function () {
         window.open(`${element.URL}`, '_blank');
       });
     });
