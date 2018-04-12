@@ -148,14 +148,11 @@ info.on('value', function (datos) {
   // Mostrar los filtros escogidos en el modal
   syndicate.addEventListener('change', function() {
     if(syndicate.checked === true) {
-     console.log('Funcionó');
      selectSyndicates.addClass('show');
      selectSyndicates.removeClass('hide');
     }
 
     if(syndicate.checked === false) {
-      // debugger;
-      console.log('Desactivastes el checkbox, por lo que no se verá nada');
       selectSyndicates.addClass('hide');
       selectSyndicates.removeClass('show');
     }
@@ -163,13 +160,10 @@ info.on('value', function (datos) {
 
   industry.addEventListener('change', function() {
     if(industry.checked === true) {
-      console.log('Funcionó');
       selectIndustries.addClass('show');
       selectIndustries.removeClass('hide');
     }
     if(industry.checked === false) {
-      // debugger;
-      console.log('Desactivastes el checkbox por segunda vez, por lo que no se verá nada de nuevo');
       selectIndustries.addClass('hide');
       selectIndustries.removeClass('show');
     }
