@@ -353,13 +353,6 @@ checkVigencia.on('change', function () {
 
 // // Selección de Empresa
 const selectCompany = $('#select-company');
-//  selectCompany.on('change', function(event) {
-//  console.log('asaasasa');
-
-
-
-//  });
-
 let nameCompany = '';
 
 selectCompany.change(function () {
