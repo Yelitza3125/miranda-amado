@@ -68,6 +68,76 @@ background-color: rgb( 65, 85, 99);
   width: 100%;
 }
 
+/*Estilo conteiner mayor */
+
+.container-convenio {
+  height: auto;
+  
+  border-radius: 10px;
+  border: 2px solid rgb(213, 120, 0);
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 0 2em 0;
+}
+
+.titulo-container {
+  background-color: rgb(221, 221, 221);
+  border-bottom: 2px solid rgb(213, 120, 0);
+  border-radius: 10px 10px 0 0;
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.titulo-text {
+  width: 80%;
+  margin: 30px 0px 10px 15px;
+  font-size: 18px;
+}
+
+.convenio-detalles {
+  margin-top: 20px;
+  width: 100%;  
+}
+
+.convenio-detalles p {
+  margin-left: 15px;
+  margin-bottom: 0;
+}
+
+
+
+hr {
+  height: 1px;
+  background-color: #fff;
+}
+
+.btn-detalles{
+  margin-top: 25px;
+  background-color: rgb( 65, 85, 99);
+  color: #fff;
+  
+}
+
+
+
+.btn-pdf {
+  width: 40%;
+  margin-top: 25px;
+ background-color: #fff;
+ border: 2px solid rgb( 65, 85, 99);
+}
+
+.botones-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+
+
 .filtro, .filtro-arrow .busqueda, .btn-filtro, .btn-comparar {
   background-color: rgb(213, 120, 0);
   color: #ffffff;

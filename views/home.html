@@ -20,14 +20,10 @@
     <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        
-          <input class="form-control mr-sm-2 token-input" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" id="buscar" type="button">
+        <!-- <input class="form-control mr-sm-2 token-input" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0 buscar" type="button">
             <i class="fas fa-search"></i>
-          </button>
-      </form>
+        </button> -->
       
       <div class="btn-group grupo-filtro">
         <button type="button" class="btn filtro">Filtrar por</button>
@@ -66,10 +62,10 @@
   <nav class="navbar navbar-light justify-content-between d-none d-sm-block">
       <a class="navbar-brand">
       <img src="../assets/docs/logo-white.png" alt="" class="logo-white"> </a>
-      <form class="form-inline right">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-comparar" data-toggle="modal" data-target="#exampleModal" >Buscar</button>
-      </form>
+      <div class="form-inline right">
+        <input class="form-control mr-sm-2 token-input" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-comparar buscar"  >Buscar</button>
+      </div>
     </nav>
 
   <!--imagen-->
@@ -118,7 +114,7 @@
     
       <div class="row">
           <div class="col-12 display-container mb-3">
-              <i class="fas fa-plus-circle icon-plus"></i>
+             <a href="formulario.html"><i class="fas fa-plus-circle icon-plus"></i></a> 
               <button class="btn  btn-comparar">
                 Comparar
               </button>
@@ -167,6 +163,7 @@
           <div class="form-group hide"  id="select-syndicates">
             <label for="select-2">Sindicato</label>
             <select class="form-control" id="select-2">
+              <option>Selecciona un Sindicato</option>
               <option>STAPMTIS</option>
               <option>SINTRAPANA</option>
               <option>SINTRAGROKASA</option>
@@ -191,8 +188,8 @@
           <div class="form-group hide"  id="select-industries">
             <label for="select-3">Industria</label>
             <select class="form-control" id="select-3">
-                <option value="">Selecciona Industria</option>
-              <option>Logistica y transporte</option>
+              <option>Selecciona una Industria</option>
+              <option>Logística y transporte</option>
               <option>Papel y derivados</option>
               <option>Agroindustria</option>
               <option>Hoteles</option>
@@ -241,6 +238,8 @@
   <script type="text/javascript" src="../js/jquery.tokeninput.js"></script>
   <script src="../js/home.js"></script>
   <script src="../js/app.js"></script>
+  <script src="../js/compare.js"></script>
+
 
 </body>
 </html>

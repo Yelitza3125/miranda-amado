@@ -14,7 +14,6 @@ let info = database.ref('convenios');
 /*Función para obtener los datos*/
 info.on('value', function (datos) {
   data = datos.val();
-
   function listEmpresas() {
     let Type = '';
     let ObjectTypes = [];
@@ -27,7 +26,7 @@ info.on('value', function (datos) {
           name: Type
         });
     }
-
+    console.log(ObjectTypes);
     return ObjectTypes;
   }
 
@@ -93,7 +92,7 @@ info.on('value', function (datos) {
     });
 
   }
-  $('#buscar').click(function () {
+  $('.buscar').click(function () {
     let company = $('.token-input').tokenInput('get')[0]['name'];
     let inputvalue = $('.token-input').tokenInput('get');
     if (inputvalue.length === 0) {
@@ -152,6 +151,37 @@ function filterVigence(date) {
 
 }
 
+// Filtro por Sindicato
+
+function filterSyndicate(syndicate) {
+  let resultSyndicate = [];
+  info.on('value', function(datos) {
+    data = datos.val();
+    data.forEach(element => {
+      if(element.Sindicato === syndicate) {
+        resultSyndicate.push(element);
+      }
+    });
+    localStorage.syndicate = JSON.stringify(resultSyndicate);
+  });
+}
+
+// Filtro por Industria
+
+function filterIndustry(industry) {
+  let resultIndustry = [];
+  info.on('value', function(datos) {
+    data = datos.val();
+    data.forEach(el => {
+      if(el.Industria === industry) {
+        resultIndustry.push(el);
+      }
+    });
+    localStorage.industry = JSON.stringify(resultIndustry);
+  });
+}
+
+
 
 // Filtro por Empresa
 function filterCompany(company) {
@@ -168,81 +198,49 @@ function filterCompany(company) {
 
 }
 
-
-
-
-let syndicate = document.getElementById('checkbox1');
-let industry = document.getElementById('checkbox2');
-let selectSyndicates = $('#select-syndicates');
-let selectIndustries = $('#select-industries');
 info.on('value', function (datos) {
-
   data = datos.val();
-  // Mostrar los filtros escogidos en el modal
-  syndicate.addEventListener('change', function () {
-    if (syndicate.checked === true) {
-      selectSyndicates.addClass('show');
-      selectSyndicates.removeClass('hide');
-    }
-
-    if (syndicate.checked === false) {
-      selectSyndicates.addClass('hide');
-      selectSyndicates.removeClass('show');
-    }
-  });
-
-  industry.addEventListener('change', function () {
-    if (industry.checked === true) {
-      selectIndustries.addClass('show');
-      selectIndustries.removeClass('hide');
-    }
-    if (industry.checked === false) {
-      selectIndustries.addClass('hide');
-      selectIndustries.removeClass('show');
-    }
-  });
   // Mostrar los 20 primeros
   let news = data.slice(0, 19);
+  
   news.forEach(element => {
     let fecha = element.Suscripción;
     let fechames = fecha.slice(0, 10);
-    let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
-         
-      <div class="card-header">
-      <div class="row">
-      <div class="col-9 col-lg-9">
-      <p>${element.Empresa}</p>
-      </div>
-      <div class="col-3 col-lg-3">
-        <div class="form-check">
-         <label class="form-check-label">
-          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
-        </label>
-        </div>
-      </div>
-      </div>
-      </div>
-      
-      
+    let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
+    <div class="titulo-container">
+     <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+     <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+    </div> 
+     
+    <div class="convenio-detalles">
+     <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+     <p class="text-gold-amado">Industria:
+     <span class="text-blue-miranda">${element.Industria}</span> </p>
+    </div>
   
-   
-    <div class="card-body">
-      <h5 class="card-title">${element.Industria}</h5>
-      <p class="card-text">${fechames}</p>
+    <div class="botones-container">
+      <button class="btn btn-detalles">
+      Ver detalles
+      </button>
+      <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+      </button>
     </div>
   </div>
   <button id=${element["N°"]} class="btn-view">Ver más</button>
   
-  </div>`
+  </div>
+    </div>
+   </div>`
+    
 
-    $('#container-box').append(template);
-    $('.card-body').click(function () {
+    $('#container-box').append(tem);
+    $('.btn-pdf').click(function () {
       window.open(`${element.URL}`, '_blank');
     });
 
   });
-  let resultCompare = [];
 
+  let resultCompare = [];
 
 $('body').on('click','.btn-view',function(){
   window.location.href = '../views/detail.html';
@@ -265,12 +263,18 @@ $('body').on('click','.btn-view',function(){
 
   $('.nroconvenio').click(function () {
     const checkCompare = $('.nroconvenio');
-    let numero = $(this).data("nro") - 1;
+    let numero = $(this).data("nro");
     if (checkCompare[numero].checked === true) {
-
-      data.forEach(element => {
-        if (element['N°'] == id)
-          resultCompare.push(element);
+      info.on('value', function (datos) {
+        data = datos.val();
+        data.forEach(elem => {
+         
+          if (elem['N°']-1 == numero){
+          resultCompare.push(data[numero]);
+         
+          }
+        
+        });
       });
     } else {
       resultCompare.pop();
@@ -287,46 +291,6 @@ $('body').on('click','.btn-view',function(){
     }
     window.location.href = 'compare.html';
   });
-
-  const compare = () => {
-
-    let ObjConvenios = jQuery.parseJSON(localStorage.resultCompare);
-    console.log(ObjConvenios);
-
-    ObjConvenios.forEach(element => {
-      let fecha = element.Suscripción;
-      let fechames = fecha.slice(0, 10);
-      let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
-         
-      <div class="card-header">
-      <div class="row">
-      <div class="col-9 col-lg-9">
-      <p>${element.Empresa}</p>
-      </div>
-      <div class="col-3 col-lg-3">
-        <div class="form-check">
-         <label class="form-check-label">
-          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
-        </label>
-        </div>
-      </div>
-      </div>
-      </div>
-      
-      
-  
-   
-    <div class="card-body">
-      <h5 class="card-title">${element.Industria}</h5>
-      <p class="card-text">${fechames}</p>
-    </div>
-  </div>
-  </div>`
-
-      $('#compare-box').append(template);
-    });
-  };
-  compare();
 });
 
 
@@ -379,6 +343,58 @@ selectCompany.change(function () {
   nameCompany = selectName;
 
 });
+
+// Mostrar los filtros escogidos en el modal
+
+let syndicate = document.getElementById('checkbox1');
+let industry = document.getElementById('checkbox2');
+let selectSyndicates = $('#select-syndicates');
+let selectIndustries = $('#select-industries');
+
+let nameSelectSyndicate = false;
+syndicate.addEventListener('change', function () {
+  if (syndicate.checked === true) {
+    nameSelectSyndicate = true;
+    selectSyndicates.addClass('show');
+    selectSyndicates.removeClass('hide');
+  }
+
+  if (syndicate.checked === false) {
+    nameSelectSyndicate = false;
+    selectSyndicates.addClass('hide');
+    selectSyndicates.removeClass('show');
+  }
+});
+
+let nameSelectIndustry = false;
+
+industry.addEventListener('change', function () {
+  if (industry.checked === true) {
+    nameSelectIndustry = true;
+    selectIndustries.addClass('show');
+    selectIndustries.removeClass('hide');
+  }
+  if (industry.checked === false) {
+    nameSelectIndustry = false;
+    selectIndustries.addClass('hide');
+    selectIndustries.removeClass('show');
+  }
+});
+
+let syndicateSelected = '';
+selectIndustries.change(function () {
+optionSelected = $('select[id=select-3]').val();
+syndicateSelected = optionSelected;
+console.log(syndicateSelected);
+});
+
+let industrySelected = '';
+selectSyndicates.change(function () {
+optionSelected2 = $('select[id=select-2]').val();
+industrySelected = optionSelected2;
+console.log(industrySelected);
+});
+
 // Seleccionar tipo de filtro solo por año de suscripcion
 let nameSelectSuscripcion = false;
 const checkSuscripcion = $('#suscription-check');
@@ -419,42 +435,113 @@ $('#filter-type').on('click', function () {
 
   $('#container-box').empty();
   if (nameSelectCompany === true) {
+    
     filterCompany(nameCompany);
     let dataResult = localStorage.result;
     let array = JSON.parse(dataResult);
     array.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
-      let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
-         
-      <div class="card-header">
-      <div class="row">
-      <div class="col-9 col-lg-9">
-      <p>${element.Empresa}</p>
+      let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
+      <div class="titulo-container">
+       <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+       <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+      </div> 
+       
+      <div class="convenio-detalles">
+       <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+       <p class="text-gold-amado">Industria:
+       <span class="text-blue-miranda">${element.Industria}</span> </p>
       </div>
-      <div class="col-3 col-lg-3">
-        <div class="form-check">
-         <label class="form-check-label">
-          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
-        </label>
-        </div>
-      </div>
-      </div>
-      </div>
-      
-      
-  
-   
-    <div class="card-body">
-      <h5 class="card-title">${element.Industria}</h5>
-      <p class="card-text">${fechames}</p>
-    </div>
     
-  </div>
+      <div class="botones-container">
+        <button class="btn btn-detalles">
+        Ver detalles
+        </button>
+        <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+        </button>
+      </div>
+      </div>
+     </div>`
+      
   
-  </div>`
-      $('#container-box').append(template);
-      $('.card-body').click(function () {
+      $('#container-box').append(tem);
+      $('.btn-pdf').click(function () {
+        window.open(`${element.URL}`, '_blank');
+      });
+    });
+  }
+  if(nameSelectSyndicate === true) {
+    console.log('hola');
+    filterSyndicate($('select[id=select-2]').val());
+    let dataSyndicate = localStorage.syndicate;
+    let arraySyndicate = JSON.parse(dataSyndicate);
+    arraySyndicate.forEach(element => {
+      let fecha = element.Suscripción;
+      let fechames = fecha.slice(0, 10);
+      let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
+    <div class="titulo-container">
+     <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+     <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+    </div> 
+     
+    <div class="convenio-detalles">
+     <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+     <p class="text-gold-amado">Industria:
+     <span class="text-blue-miranda">${element.Industria}</span> </p>
+    </div>
+  
+    <div class="botones-container">
+      <button class="btn btn-detalles">
+      Ver detalles
+      </button>
+      <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+      </button>
+    </div>
+    </div>
+   </div>`
+    
+
+    $('#container-box').append(tem);
+    $('.btn-pdf').click(function () {
+      window.open(`${element.URL}`, '_blank');
+    });
+    });
+  }
+  // Filtrando empresas según la industria a la que pertenecen
+  if(nameSelectIndustry === true) {
+    console.log('hola');
+    filterIndustry($('select[id=select-3]').val());
+    let dataIndustry = localStorage.industry;
+    let arrayIndustry = JSON.parse(dataIndustry);
+    arrayIndustry.forEach(element => {
+      let fecha = element.Suscripción;
+      let fechames = fecha.slice(0, 10);
+      let template2 = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
+      <div class="titulo-container">
+       <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+       <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+      </div> 
+       
+      <div class="convenio-detalles">
+       <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+       <p class="text-gold-amado">Industria:
+       <span class="text-blue-miranda">${element.Industria}</span> </p>
+      </div>
+    
+      <div class="botones-container">
+        <button class="btn btn-detalles">
+        Ver detalles
+        </button>
+        <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+        </button>
+      </div>
+      </div>
+     </div>`
+      
+  
+      $('#container-box').append(template2);
+      $('.btn-pdf').click(function () {
         window.open(`${element.URL}`, '_blank');
       });
     });
@@ -466,36 +553,33 @@ $('#filter-type').on('click', function () {
     array.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
-      let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
-         
-      <div class="card-header">
-      <div class="row">
-      <div class="col-9 col-lg-9">
-      <p>${element.Empresa}</p>
-      </div>
-      <div class="col-3 col-lg-3">
-        <div class="form-check">
-         <label class="form-check-label">
-          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
-        </label>
-        </div>
-      </div>
-      </div>
-      </div>
-      
-      
-  
-   
-    <div class="card-body">
-      <h5 class="card-title">${element.Industria}</h5>
-      <p class="card-text">${fechames}</p>
+      let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
+    <div class="titulo-container">
+     <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+     <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+    </div> 
+     
+    <div class="convenio-detalles">
+     <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+     <p class="text-gold-amado">Industria:
+     <span class="text-blue-miranda">${element.Industria}</span> </p>
     </div>
-   </div>
+  
+    <div class="botones-container">
+      <button class="btn btn-detalles">
+      Ver detalles
+      </button>
+      <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+      </button>
+    </div>
+    </div>
    </div>`
-      $('#container-box').append(template);
-      $('.card-body').click(function () {
-        window.open(`${element.URL}`, '_blank');
-      });
+    
+
+    $('#container-box').append(tem);
+    $('.btn-pdf').click(function () {
+      window.open(`${element.URL}`, '_blank');
+    });
     });
   }
 
@@ -506,38 +590,33 @@ $('#filter-type').on('click', function () {
     array.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
-      let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
-         
-      <div class="card-header">
-      <div class="row">
-      <div class="col-9 col-lg-9">
-      <p>${element.Empresa}</p>
-      </div>
-      <div class="col-3 col-lg-3">
-        <div class="form-check">
-         <label class="form-check-label">
-          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
-        </label>
-        </div>
-      </div>
-      </div>
-      </div>
-      
-      
-  
-   
-    <div class="card-body">
-      <h5 class="card-title">${element.Industria}</h5>
-      <p class="card-text">${fechames}</p>
+      let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
+    <div class="titulo-container">
+     <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
+     <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+    </div> 
+     
+    <div class="convenio-detalles">
+     <p class="text-gold-amado">Suscripción: <span class="text-blue-miranda">${fechames}</span></p>
+     <p class="text-gold-amado">Industria:
+     <span class="text-blue-miranda">${element.Industria}</span> </p>
     </div>
-   </div>
+  
+    <div class="botones-container">
+      <button class="btn btn-detalles">
+      Ver detalles
+      </button>
+      <button class="btn btn-pdf text-blue-miranda"> Ver PDF
+      </button>
+    </div>
+    </div>
    </div>`
-      $('#container-box').append(template);
-      $('.card-body').click(function () {
-        window.open(`${element.URL}`, '_blank');
-      });
+    
+
+    $('#container-box').append(tem);
+    $('.btn-pdf').click(function () {
+      window.open(`${element.URL}`, '_blank');
+    });
     });
   }
-
-
 })
