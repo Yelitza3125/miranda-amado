@@ -5,6 +5,7 @@
   font-family: 'Roboto', sans-serif;
 }
 
+
 /*Clases generales*/
 
 body, html, section {
@@ -61,7 +62,7 @@ p.welcome {
 
 .rela{
   position: relative;
-  bottom: 10px;
+  bottom: 1px;
 }
 
 .rela:hover{
