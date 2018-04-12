@@ -33,3 +33,13 @@ body, html, section {
   width: 50%;
   margin: 2em 0 2em 0;
 }
+
+/*Display*/
+
+.show{
+  display: block;
+
+}
+.hide{
+  display: none;
+}

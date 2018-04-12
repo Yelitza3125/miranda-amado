@@ -27,7 +27,7 @@ info.on('value', function (datos) {
           name: Type
         });
     }
-    console.log(ObjectTypes);
+
     return ObjectTypes;
   }
 
@@ -94,7 +94,7 @@ function filterSuscription() {
   let result = [];
   info.on('value', function (datos) {
     data = datos.val();
-    console.log(data);
+   
     data.forEach(function (element) {
       if ((element.Suscripción).split) {
         console.log((element.Suscripción).substr(0, 4))
@@ -141,8 +141,8 @@ function filterVigence(date) {
 
 let syndicate = document.getElementById('checkbox1');
 let industry = document.getElementById('checkbox2');
-let selectSyndicates = $('select-syndicates');
-let selectIndustries = $('select-industries');
+let selectSyndicates = $('#select-syndicates');
+let selectIndustries = $('#select-industries');
 info.on('value', function (datos) {
   data = datos.val();
   // Mostrar los filtros escogidos en el modal
@@ -164,10 +164,14 @@ info.on('value', function (datos) {
   industry.addEventListener('change', function() {
     if(industry.checked === true) {
       console.log('Funcionó');
+      selectIndustries.addClass('show');
+      selectIndustries.removeClass('hide');
     }
     if(industry.checked === false) {
       // debugger;
       console.log('Desactivastes el checkbox por segunda vez, por lo que no se verá nada de nuevo');
+      selectIndustries.addClass('hide');
+      selectIndustries.removeClass('show');
     }
   });
   // Mostrar los 20 primeros
@@ -191,13 +195,21 @@ info.on('value', function (datos) {
 
 });
 
-// Seleccionar tipo de filtro
- //  Evento change al checkbox sindicato
-const checkCompany =$('#company-check');
+// Seleccionar tipo de filtro solo Empresa
 
- checkCompany.addEventListener('change', function() {
-  if(checkCompany.checked === true) {
-    console.log('true');
+const checkCompany = $('#company-check');
+
+ checkCompany.on('change', function() {
+  if(checkCompany[0].checked === true ){
+    $('#company').addClass( "show" );
+    $('#company').removeClass( "hide" );
+  }
+  else{
+    $('#company').removeClass( "show" );
+    $('#company').addClass( "hide" );
   }
   
 });
+
+// Selección de Empresa
+
