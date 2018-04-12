@@ -15,7 +15,7 @@
 <body>
 
   <!--nav -->
-  <nav class="navbar navbar-expand-lg navbar-light">
+  <nav class="navbar navbar-expand-lg navbar-light d-block d-sm-none">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
@@ -56,6 +56,17 @@
       </div>
     </div>
   </nav>
+
+  <!--nav desktop-->
+
+  <nav class="navbar navbar-light justify-content-between d-none d-sm-block">
+      <a class="navbar-brand">
+      <img src="../assets/docs/logo-white.png" alt="" class="logo-white"> </a>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Buscar</button>
+      </form>
+    </nav>
 
   <!--imagen-->
 

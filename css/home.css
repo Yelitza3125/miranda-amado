@@ -114,12 +114,19 @@ background-color: rgb( 65, 85, 99);
 }
 
 
+@media (min-width: 992px) { 
 
+  .navbar {
+    background-color: rgb( 65, 85, 99);
+  }
 
-
+  
 /*Logotipo*/
 
-.logo {
-  width: 50%;
+.logo-white {
+  width: 35%;
   margin: 2em 0 2em 0;
 }
+
+}  
+
