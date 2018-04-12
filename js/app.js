@@ -150,11 +150,13 @@ info.on('value', function (datos) {
   // Mostrar los filtros escogidos en el modal
   syndicate.addEventListener('change', function() {
     if(syndicate.checked === true) {
+      console.log('true');
      selectSyndicatesContainer.addClass('show');
      selectSyndicatesContainer.removeClass('hide');
     }
 
     if(syndicate.checked === false) {
+      console.log('false');
       selectSyndicatesContainer.addClass('hide');
       selectSyndicatesContainer.removeClass('show');
     }
@@ -171,13 +173,7 @@ info.on('value', function (datos) {
     }
   });
 
-  // Mostrar resultados de búsqueda según la opción escogida
 
-  selectSyndicates.change(function () {
-    nsyndicate = $('select[id=select-2]').val();
-  
-    selectSyndicates.val($(this).val())});
-    
   // Mostrar los 20 primeros
   let news = data.slice(0,19);
   news.forEach(element => {
@@ -196,6 +192,38 @@ info.on('value', function (datos) {
     window.open(`${element.URL}`, '_blank');
   });
  });
+
+ // Mostrar resultados de búsqueda según la opción escogida
+
+  let syndicateSelected = '';
+  selectIndustries.change(function () {
+  optionSelected = $('select[id=select-3]').val();
+  syndicateSelected = optionSelected;
+  console.log(syndicateSelected);
+  });
+
+  let industrySelected = '';
+  selectSyndicates.change(function () {
+  optionSelected2 = $('select[id=select-2]').val();
+  industrySelected = optionSelected2;
+  console.log(industrySelected);
+  });
+  
+ let buttonFilter = $('#filter-type');
+  // Filtrando los convenios
+  buttonFilter.on('click', function() {
+    localStorage.syndicate = $('select[id=select-2]').val();
+    localStorage.industry = $('select[id=select-3]').val();
+    var cards = $('.card-title');
+    console.log(cards);
+    // for(var i = 0; i < cards ; i++) {
+    //   console.log(cards[i]);
+    //   if (industrySelected === cards[i].innerHTML) {
+    //     debugger;
+    //     console.log(cards[i].innerHTML);
+    //   }
+    // };
+  });
 
 });
 

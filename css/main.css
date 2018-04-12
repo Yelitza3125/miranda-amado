@@ -43,13 +43,6 @@ p.welcome {
   color: #ffffff;
 }
 
-.show {
-  display: block;
-}
-
-.hide {
-  display: none;
-}
 /*Diseño para desktop*/
 
 @media (min-width: 992px) { 
