@@ -223,6 +223,23 @@ selectCompany.change(function () {
   nameCompany = selectName;
 
 });
+// Seleccionar tipo de filtro solo por año de suscripcion
+
+const checkSuscripcion = $('#suscription-check');
+
+checkSuscripcion.on('change', function() {
+  
+  if(checkSuscripcion[0].checked === true ){
+  
+    $('#suscripcion').addClass( "show" );
+    $('#suscripcion').removeClass( "hide" );
+  }
+  else{
+    $('#suscripcion').removeClass( "show" );
+    $('#suscripcion').addClass( "hide" );
+  }
+  
+});
 
 
 
