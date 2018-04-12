@@ -100,7 +100,6 @@ Luego de una nueva deliberación en el equipo y corrección de errores, se decid
 
 [User flow](https://docs.google.com/presentation/d/1QAvqmcUD1D995y0dSZOB7MC0iBu4jZoU1t-EpNzzRns/edit?usp=sharing)
 
-
 ### E. Herramientas utilizadas:
 
 - HTML5
@@ -108,3 +107,4 @@ Luego de una nueva deliberación en el equipo y corrección de errores, se decid
 - Bootstrap 4.
 - Firebase
 - Javascript.
+- LocalStorage.

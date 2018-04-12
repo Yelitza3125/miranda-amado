@@ -186,6 +186,10 @@ input[type=checkbox]
   padding:6px 43px;
 }
 
+.btn-border:hover{
+  color: rgb(213, 120, 0);
+}
+
 .filtro-menu {
   min-width: 100%;
 }

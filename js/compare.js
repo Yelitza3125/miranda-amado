@@ -44,7 +44,3 @@ const compare = () => {
     });
 };
 compare();
-
-
-$('#ViewReport').click(function () {
-  });
