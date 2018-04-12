@@ -244,8 +244,7 @@ $('body').on('click','.btn-view',function(){
   localStorage.data = JSON.stringify(data);
   localStorage.idButton = event.target.id;
 });
-$('.nroconvenio').addEventListener("click",function () {
-    alert("hola");
+$(document).on('click', '.nroconvenio', function() {
     const checkCompare = $('.nroconvenio');
     let numero = $(this).data("nro");
     if (checkCompare[numero].checked === true) {
