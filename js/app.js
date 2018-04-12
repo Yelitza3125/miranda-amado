@@ -231,6 +231,8 @@ info.on('value', function (datos) {
       <p class="card-text">${fechames}</p>
     </div>
   </div>
+  <button id=${element["N°"]} class="btn-view">Ver más</button>
+  
   </div>`
 
     $('#container-box').append(template);
@@ -240,6 +242,23 @@ info.on('value', function (datos) {
 
   });
   let resultCompare = [];
+
+
+$('body').on('click','.btn-view',function(){
+  window.location.href = '../views/detail.html';
+  console.log(event.target);
+  localStorage.data = JSON.stringify(data);
+  localStorage.idButton = event.target.id;
+});
+
+// let newData = data.slice(0, 19);
+// newData.forEach(element => {
+//   if(element["N°"] === localStorage.getItem("idButton")) {
+//       console.log('Hola');
+//   }
+// });
+
+
 
 
 
@@ -430,7 +449,9 @@ $('#filter-type').on('click', function () {
       <h5 class="card-title">${element.Industria}</h5>
       <p class="card-text">${fechames}</p>
     </div>
+    
   </div>
+  
   </div>`
       $('#container-box').append(template);
       $('.card-body').click(function () {

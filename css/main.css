@@ -131,4 +131,10 @@ p.welcome {
    display: inline-flex;
    margin: 10px;
   }
+
+  /* estilos de campos del detalle */
+
+  .detaill-campo {
+    font-size: 11px;
+  }
 }
