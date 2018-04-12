@@ -10,8 +10,20 @@
 }
 
 .carrusel-img {
-  height:450px;
+  height:400px;
   
+}
+
+.icono {
+  font-size: 2.3em;
+  color: #fff;
+}
+
+#prev-button {
+  opacity: 5;
+  display: flex;
+  align-items: flex-start;
+  margin: 4em 0 0;
 }
 
 #muestra {
@@ -189,7 +201,8 @@ input[type=checkbox]
 }
 
 .btn-comparar{
-  padding: 5px 30px;
+  padding: 7px 20px;
+  background-color: rgb(213, 120, 0);
 }
 
 .btn-border{
@@ -256,6 +269,19 @@ input[type=checkbox]
   
 }
 
+.mobile-container {
+  display: flex;
+  width: 100%;
+  position: relative;
+  bottom: 130px;
+  padding: 0;
+  justify-content: center;
+}
+
+.left-button {
+  padding: 6px 20px;
+}
+
 /*Botones de agregar convenio y comparación*/
 
 .display-container {
@@ -320,6 +346,23 @@ input[type=checkbox]
   color:white;
 }
 
+@media(min-width: 768px) {
+  .mobile-container {
+    display: block;
+    width: 100%;
+    position: static;
+    padding: 0 15px;
+  }
+
+  .display-container {
+    margin-top: 50px;
+  }
+
+  .carrusel-img {
+    height: 450px;
+  }
+}
+
 @media (min-width: 992px) { 
 
   .navbar {
@@ -330,6 +373,7 @@ input[type=checkbox]
   .img-mobile{
     height: 45vh;
   }
+
   .img-mobile p{
     font-size: 3em;
     text-align: left;
@@ -337,9 +381,20 @@ input[type=checkbox]
 
   }
 
+  .mobile-container {
+    display: block;
+    width: 100%;
+    position: static;
+    padding: 0 15px;
+  }
+
   .text-white {
     font-size: 2.4em;
     font-weight: bolder;
+  }
+
+  .display-container {
+    margin-top: 15px;
   }
   
 /*Logotipo*/
