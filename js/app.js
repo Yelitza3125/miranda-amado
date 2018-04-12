@@ -36,8 +36,8 @@ info.on('value', function (datos) {
     listEmpresas(), {
       theme: 'bootstrap',
       preventDuplicates: true,
-      hintText: 'Escribe un termino de busqueda',
-      noResultsText: 'No se encntraron Resultados',
+      hintText: 'Realiza una búsqueda',
+      noResultsText: 'No se encontraron resultados',
       searchingText: 'Buscando...',
       tokenLimit: 1
     });

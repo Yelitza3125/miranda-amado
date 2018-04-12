@@ -13,11 +13,13 @@ body, html {
 }
 
 .icono {
-  font-size: 2.3em;
+  margin: 20px 0 0 10px;
+  font-size: 2em;
   color: rgb(213, 120, 0);
-  position: relative;
-  margin-right: 380px;
-  margin-bottom: 1px;
+  align-self: flex-start;
+  /*position: relative; */
+ /* margin-right: 380px;
+  margin-bottom: 1px; */
 }
 
 .text-blue-miranda {
@@ -36,7 +38,7 @@ body, html {
 
 .logo {
   margin: 40px 0 20px 0;
-  width: 60%;
+  width: 70%;
 }
 
 /*Texto de convenio*/
@@ -70,6 +72,9 @@ body, html {
 
 @media (min-width: 992px) {
 
+  .icono {
+    margin-bottom: 40px;
+  }
   
   body {
     display: flex;
@@ -79,19 +84,22 @@ body, html {
   }
 
   .flex-logo {
+    padding-left: 60px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .logo {
     width: 60%;
+    margin: 0 !important;
   }
 
   .text-p {
     width: 70%;
     font-size: 20px;
-    margin: 20px 0 0 0;
+    margin-top: 20px;
   }
 
   .container-form {
@@ -139,7 +147,9 @@ body, html {
     margin: 10px 0 0 0;
   }
 }  
+
+/*
 input#fichero {
   width: 200px;
-}
+} */
 
