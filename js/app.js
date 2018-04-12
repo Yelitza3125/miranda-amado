@@ -201,6 +201,7 @@ info.on('value', function (datos) {
   });
   // Mostrar los 20 primeros
   let news = data.slice(0, 19);
+  
   news.forEach(element => {
     let fecha = element.Suscripción;
     let fechames = fecha.slice(0, 10);
