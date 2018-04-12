@@ -5,6 +5,13 @@
   font-family: 'Roboto', sans-serif;
 }
 
+
+.right{
+  float: right;
+  position: relative;
+  top: 7px;
+}
+
 /*Clases generales*/
 
 body, html, section {
@@ -67,6 +74,12 @@ background-color: rgb( 65, 85, 99);
   border: none;
 }
 
+.btn-border{
+  background-color: white;
+  border: 2px solid rgb(213, 120, 0);
+  color: rgb(213, 120, 0);
+}
+
 .filtro-menu {
   min-width: 100%;
 }
@@ -110,7 +123,7 @@ background-color: rgb( 65, 85, 99);
 /*Botones de agregar convenio y comparación*/
 
 .display-container {
-  margin-top: 40px;
+  margin-top: 15px;
   display: flex;
   justify-content: flex-end;  
 }
@@ -121,6 +134,12 @@ background-color: rgb( 65, 85, 99);
   margin-right: 1em;
 }
 
+.float-r{
+  float: right;;
+}
+.over{
+  overflow: auto;
+}
 .show {
   display: block;
 }
@@ -136,12 +155,18 @@ background-color: rgb( 65, 85, 99);
     background-color: rgb( 65, 85, 99);
   }
 
+  .img-mobile{
+    height: 45vh;
+  }
+  .img-mobile p{
+    font-size: 23px;
+  }
   
 /*Logotipo*/
 
 .logo-white {
   width: 35%;
-  margin: 2em 0 2em 0;
+  
 }
 
 }  
