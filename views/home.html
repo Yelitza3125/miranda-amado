@@ -20,11 +20,10 @@
     <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <input class="form-control mr-sm-2 token-input" type="search" placeholder="Search" aria-label="Search">
+        <!-- <input class="form-control mr-sm-2 token-input" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0 buscar" type="button">
             <i class="fas fa-search"></i>
-
-        </button>
+        </button> -->
       
       <div class="btn-group grupo-filtro">
         <button type="button" class="btn filtro">Filtrar por</button>
@@ -63,18 +62,15 @@
   <nav class="navbar navbar-light justify-content-between d-none d-sm-block">
       <a class="navbar-brand">
       <img src="../assets/docs/logo-white.png" alt="" class="logo-white"> </a>
-      <form class="form-inline">
-          <input class="form-control mr-sm-2 token-input" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0 buscar" type="button">
-              <i class="fas fa-search"></i>
-  
-          </button>
-      </form>
+      <div class="form-inline right">
+        <input class="form-control mr-sm-2 token-input" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-comparar buscar"  >Buscar</button>
+      </div>
     </nav>
 
   <!--imagen-->
 
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-12 img-mobile">
         <p class="text-blue-miranda">Creando acciones conjuntas para el beneficio mutuo</p>
@@ -82,35 +78,52 @@
     </div>
   </div>
 
-          </button>
+  <!--Búsqueda y comparación-->
+<div class="over container  mt-3 d-none d-sm-block">
+  <div class="float-r">
+     
+    
+        <div class="form-check form-check-inline pt-2">
+            <input class="form-check-input" type="checkbox" value="" id="company-check">
+            <label class="form-check-label" for="company-check">Empresa</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkbox1" value="option1">
+            <label class="form-check-label" for="checkbox1">Sindicato</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkbox2" value="option2">
+            <label class="form-check-label" for="checkbox2">Industria</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="suscription-check">
+            <label class="form-check-label" for="checkbox3">Suscripción</label>
+          </div>
+      <div class="float-r" >
+        <button class="btn btn-border" data-toggle="modal" data-target="#exampleModal" >Filtrar</button>
       </div>
-    </nav>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="" id="company-check">
-      <label class="form-check-label" for="company-check">Empresa</label>
     </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="checkbox1" value="option1">
-      <label class="form-check-label" for="checkbox1">Sindicato</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="checkbox2" value="option2">
-      <label class="form-check-label" for="checkbox2">Industria</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="suscription-check">
-      <label class="form-check-label" for="checkbox3">Suscripción</label>
-    </div>
-<div>
-  <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Buscar</button>
+   
 </div>
-<br>
-<div>
-    <button class="btn btn-primary" id="comparar" >Comparar</button>
-  </div>
-<div class="container"  >
+
+  <div class="container">
+    
+      <div class="row">
+          <div class="col-12 display-container mb-3">
+              <i class="fas fa-plus-circle icon-plus"></i>
+              <button class="btn  btn-comparar">
+                Comparar
+              </button>
+      
+            </div>
+      </div>
+        
+      
+    </div>
+    
+<div class="container">
   <div class="row" id="container-box" ></div>
-  
+</div>
 
   </div>
 </div>
@@ -146,6 +159,7 @@
           <div class="form-group hide"  id="select-syndicates">
             <label for="select-2">Sindicato</label>
             <select class="form-control" id="select-2">
+              <option>Selecciona un Sindicato</option>
               <option>STAPMTIS</option>
               <option>SINTRAPANA</option>
               <option>SINTRAGROKASA</option>
@@ -170,7 +184,8 @@
           <div class="form-group hide"  id="select-industries">
             <label for="select-3">Industria</label>
             <select class="form-control" id="select-3">
-              <option>Logistica y transporte</option>
+              <option>Selecciona una Industria</option>
+              <option>Logística y transporte</option>
               <option>Papel y derivados</option>
               <option>Agroindustria</option>
               <option>Hoteles</option>

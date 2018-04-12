@@ -56,14 +56,32 @@ info.on('value', function (datos) {
         let fechames = fecha.slice(0, 10);
         $('#container-box').append(`
         
-        <div class="col-6 col-lg-3 box"><div class="card bg-light mb-3  " >
-        <div class="card-header">${element.Empresa}</div>
-        <div class="card-body">
-          <h5 class="card-title">${element.Industria}</h5>
-          <p class="card-text">${fechames}</p>
+        <div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
+         
+      <div class="card-header">
+      <div class="row">
+      <div class="col-9 col-lg-9">
+      <p>${element.Empresa}</p>
+      </div>
+      <div class="col-3 col-lg-3">
+        <div class="form-check">
+         <label class="form-check-label">
+          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
+        </label>
         </div>
       </div>
       </div>
+      </div>
+      
+      
+  
+   
+    <div class="card-body">
+      <h5 class="card-title">${element.Industria}</h5>
+      <p class="card-text">${fechames}</p>
+    </div>
+  </div>
+  </div>
         `);
 
 
@@ -89,11 +107,11 @@ info.on('value', function (datos) {
 });
 
 
-$('#suscripcion1').click(function(){
+$('#suscripcion1').click(function () {
   // ("#sprints").change(function () {
-    nsprint = $('select[id=suscripcion1]').val();
+  nsprint = $('select[id=suscripcion1]').val();
   console.log(nsprint);
-    // $('#sprints').val($(this).val());
+  // $('#sprints').val($(this).val());
 })
 
 
@@ -107,12 +125,12 @@ function filterSuscription(date) {
     data.forEach(function (element) {
       if ((element.Suscripción).split()) {
         // console.log((element.Suscripción).substr(0, 4))
-      result.push((element.Suscripción).substr(0, 4));
-      
+        result.push((element.Suscripción).substr(0, 4));
+
       }
     });
     localStorage.setItem('result', JSON.stringify(result))
-    
+
   });
 }
 
@@ -150,6 +168,7 @@ function filterVigence(date) {
 
 }
 
+
 let syndicate = document.getElementById('checkbox1');
 let industry = document.getElementById('checkbox2');
 let selectSyndicates = $('#select-syndicates');
@@ -158,46 +177,152 @@ info.on('value', function (datos) {
 
   data = datos.val();
   // Mostrar los filtros escogidos en el modal
+  let nameSelectSyndicate = false;
   syndicate.addEventListener('change', function () {
     if (syndicate.checked === true) {
+      nameSelectSyndicate = true;
       selectSyndicates.addClass('show');
       selectSyndicates.removeClass('hide');
     }
 
     if (syndicate.checked === false) {
+      nameSelectSyndicate = false;
       selectSyndicates.addClass('hide');
       selectSyndicates.removeClass('show');
     }
   });
 
+  let nameSelectIndustry = false;
+
   industry.addEventListener('change', function () {
     if (industry.checked === true) {
+      nameSelectIndustry = true;
       selectIndustries.addClass('show');
       selectIndustries.removeClass('hide');
     }
     if (industry.checked === false) {
+      nameSelectIndustry = false;
       selectIndustries.addClass('hide');
       selectIndustries.removeClass('show');
     }
   });
+
+  let syndicateSelected = '';
+  selectIndustries.change(function () {
+  optionSelected = $('select[id=select-3]').val();
+  syndicateSelected = optionSelected;
+  console.log(syndicateSelected);
+  });
+
+  let industrySelected = '';
+  selectSyndicates.change(function () {
+  optionSelected2 = $('select[id=select-2]').val();
+  industrySelected = optionSelected2;
+  console.log(industrySelected);
+  });
+
+  // Filtro por Sindicato
+
+  function filterSyndicate(syndicate) {
+    let resultSyndicate = [];
+    data.forEach(element => {
+      if(element.Sindicato === syndicate) {
+        resultSyndicate.push(element);
+      }
+    });
+    localStorage.syndicate = JSON.stringify(resultSyndicate);
+  }
+  
+  // Filtro por Industria
+
+  function filterIndustry(industry) {
+    let resultIndustry = [];
+    data.forEach(el => {
+      if(el.Industria === industry) {
+        resultIndustry.push(el);
+      }
+    });
+    localStorage.industry = JSON.stringify(resultIndustry);
+  }
+  
+ let buttonFilter = $('#filter-type');
+
+ // Filtrando empresas según la industria a la que pertenecen
+
+  buttonFilter.on('click', function() {
+    $('#container-box').empty();
+    // Filtrando empresas por sindicato
+    if(nameSelectSyndicate === true) {
+      console.log('hola');
+      filterSyndicate($('select[id=select-2]').val());
+      let dataSyndicate = localStorage.syndicate;
+      let arraySyndicate = JSON.parse(dataSyndicate);
+      arraySyndicate.forEach(element => {
+        let fecha = element.Suscripción;
+        let fechames = fecha.slice(0, 10);
+        let template = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3  " >
+        <div class="card-header">${element.Empresa}</div>
+        <div class="card-body">
+        <h5 class="card-title">${element.Sindicato}</h5>
+        <p class="card-text">${fechames}</p>
+        </div>
+        </div>
+         </div>`
+        $('#container-box').append(template);
+        $('.box').click(function () {
+          window.open(`${element.URL}`, '_blank');
+        });
+      });
+    }
+    // Filtrando empresas según la industria a la que pertenecen
+    if(nameSelectIndustry === true) {
+      console.log('hola');
+      filterIndustry($('select[id=select-3]').val());
+      let dataIndustry = localStorage.industry;
+      let arrayIndustry = JSON.parse(dataIndustry);
+      arrayIndustry.forEach(element => {
+        let fecha = element.Suscripción;
+        let fechames = fecha.slice(0, 10);
+        let template = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3  " >
+        <div class="card-header">${element.Empresa}</div>
+        <div class="card-body">
+        <h5 class="card-title">${element.Industria}</h5>
+        <p class="card-text">${fechames}</p>
+        </div>
+        </div>
+         </div>`
+        $('#container-box').append(template);
+        $('.box').click(function () {
+          window.open(`${element.URL}`, '_blank');
+        });
+      });
+    }
+  });
+
   // Mostrar los 20 primeros
   let news = data.slice(0, 19);
   news.forEach(element => {
     let fecha = element.Suscripción;
     let fechames = fecha.slice(0, 10);
-    let template = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3" >
-    <div class="row">
-      <div class="col-lg-9">
-      <div class="card-header">${element.Empresa}</div>
+    let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
+         
+      <div class="card-header">
+      <div class="row">
+      <div class="col-9 col-lg-9">
+      <p>${element.Empresa}</p>
       </div>
-      <div class="col-lg-3">
+      <div class="col-3 col-lg-3">
         <div class="form-check">
          <label class="form-check-label">
-          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
+          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]-1}>
         </label>
         </div>
       </div>
-    </div>
+      </div>
+      </div>
+      
+      
+  
    
     <div class="card-body">
       <h5 class="card-title">${element.Industria}</h5>
@@ -219,23 +344,20 @@ info.on('value', function (datos) {
 
   $('.nroconvenio').click(function () {
     const checkCompare = $('.nroconvenio');
-    let numero = $(this).data("nro") - 1;
-    alert(numero);
+    let numero = $(this).data("nro");
     if (checkCompare[numero].checked === true) {
       info.on('value', function (datos) {
         data = datos.val();
         data.forEach(elem => {
          
-          if (elem['N°'] == numero){
+          if (elem['N°']-1 == numero){
           resultCompare.push(data[numero]);
          
           }
+        
         });
       });
-
- 
-    }
-    else {
+    } else {
       resultCompare.pop();
 
     }
@@ -250,7 +372,6 @@ info.on('value', function (datos) {
     }
     window.location.href = 'compare.html';
   });
-
 
 });
 
@@ -293,26 +414,24 @@ selectCompany.change(function () {
 
 const checkSuscripcion = $('#suscription-check');
 
-checkSuscripcion.on('change', function() {
-  
-  if(checkSuscripcion[0].checked === true ){
-  
-    $('#suscripcion').addClass( "show" );
-    $('#suscripcion').removeClass( "hide" );
+checkSuscripcion.on('change', function () {
+
+  if (checkSuscripcion[0].checked === true) {
+
+    $('#suscripcion').addClass("show");
+    $('#suscripcion').removeClass("hide");
+  } else {
+    $('#suscripcion').removeClass("show");
+    $('#suscripcion').addClass("hide");
   }
-  else{
-    $('#suscripcion').removeClass( "show" );
-    $('#suscripcion').addClass( "hide" );
-  }
-  
+
 });
 
 
 
 
 $('#filter-type').on('click', function () {
-  
-   $('#container-box').empty();
+  $('#container-box').empty();
   if (nameSelectCompany === true) {
     filterCompany(nameCompany);
     let dataResult = localStorage.result;
@@ -320,20 +439,36 @@ $('#filter-type').on('click', function () {
     array.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
-      let template = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3  " >
-   <div class="card-header">${element.Empresa}</div>
-   <div class="card-body">
-     <h5 class="card-title">${element.Industria}</h5>
-     <p class="card-text">${fechames}</p>
-   </div>
- </div>
- </div>`
+      let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
+         
+      <div class="card-header">
+      <div class="row">
+      <div class="col-9 col-lg-9">
+      <p>${element.Empresa}</p>
+      </div>
+      <div class="col-3 col-lg-3">
+        <div class="form-check">
+         <label class="form-check-label">
+          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
+        </label>
+        </div>
+      </div>
+      </div>
+      </div>
+      
+      
+  
+   
+    <div class="card-body">
+      <h5 class="card-title">${element.Industria}</h5>
+      <p class="card-text">${fechames}</p>
+    </div>
+  </div>
+  </div>`
       $('#container-box').append(template);
-      $('.box').click(function () {
+      $('.card-body').click(function () {
         window.open(`${element.URL}`, '_blank');
       });
     });
   }
-
-
 })
