@@ -12,7 +12,7 @@
     
     ul.token-input-list-bootstrap li input {
         border: 0;
-        width: 100px;
+        width: 250px !important;
         padding: 3px 8px;
         background-color: white;
         margin: 2px 0;

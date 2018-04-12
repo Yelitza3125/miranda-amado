@@ -5,6 +5,15 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.carousel {
+  height:450px ;
+}
+
+.carrusel-img {
+  height:450px;
+  
+}
+
 #muestra {
   text-align: center;
 }
@@ -57,6 +66,10 @@ background-color: rgb( 65, 85, 99);
   border-color: #ffffff !important;
 }
 
+.navbar-mobile {
+  margin: 0.7em 0 0;
+}
+
 
 /*Filtro */
 
@@ -70,7 +83,7 @@ background-color: rgb( 65, 85, 99);
 }
 
 .filtro-arrow {
-  width: 25%;
+  width: 20%;
 }
 
 .grupo-filtro {
@@ -281,14 +294,19 @@ input[type=checkbox]
 }
 
 .Compar {
-  background-color: rgb(214, 222, 236);
+
   padding: 0;
   margin-bottom: 10px;
 }
 
+.grey{
+  background-color: #E0E0E0;
+  padding: .5em;
+}
+
 .box {
-  margin: 0 8px 8px 0;
-  padding: 0;
+  box-sizing: border-box;
+  padding: 7px;
 }
 
 .volver {
@@ -318,6 +336,11 @@ input[type=checkbox]
     width: 50%;
 
   }
+
+  .text-white {
+    font-size: 2.4em;
+    font-weight: bolder;
+  }
   
 /*Logotipo*/
 
@@ -341,4 +364,6 @@ input[type=checkbox]
 }
 
 
-
+.bold-none{
+  font-weight: 400;
+}
