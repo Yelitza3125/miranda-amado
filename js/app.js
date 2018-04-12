@@ -326,6 +326,28 @@ checkCompany.on('change', function () {
   }
 
 });
+// Seleccion de vigencia
+
+let nameSelectVigencia = false;
+const checkVigencia = $('#vigencia-check');
+
+checkVigencia.on('change', function () {
+
+  if (checkVigencia[0].checked === true) {
+    nameSelectVigencia = true;
+    $('#vigencia').addClass("show");
+    $('#vigencia').removeClass("hide");
+  } else {
+    nameSelectVigencia = false;
+    $('#vigencia').removeClass("show");
+    $('#vigencia').addClass("hide");
+  }
+
+});
+
+
+
+
 
 // // Selección de Empresa
 const selectCompany = $('#select-company');
@@ -361,7 +383,13 @@ checkSuscripcion.on('change', function () {
 });
 
 
+let ageVigence = '';
 
+$('#vigencia1').change(function () {
+  let selectAge = $('select[id=vigencia1]').val();
+  ageVigence = selectAge;
+
+});
 
 $('#filter-type').on('click', function () {
 
@@ -369,6 +397,45 @@ $('#filter-type').on('click', function () {
   if (nameSelectCompany === true) {
     filterCompany(nameCompany);
     let dataResult = localStorage.result;
+    let array = JSON.parse(dataResult);
+    array.forEach(element => {
+      let fecha = element.Suscripción;
+      let fechames = fecha.slice(0, 10);
+      let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
+         
+      <div class="card-header">
+      <div class="row">
+      <div class="col-9 col-lg-9">
+      <p>${element.Empresa}</p>
+      </div>
+      <div class="col-3 col-lg-3">
+        <div class="form-check">
+         <label class="form-check-label">
+          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
+        </label>
+        </div>
+      </div>
+      </div>
+      </div>
+      
+      
+  
+   
+    <div class="card-body">
+      <h5 class="card-title">${element.Industria}</h5>
+      <p class="card-text">${fechames}</p>
+    </div>
+  </div>
+  </div>`
+      $('#container-box').append(template);
+      $('.card-body').click(function () {
+        window.open(`${element.URL}`, '_blank');
+      });
+    });
+  }
+  if (nameSelectVigencia === true) {
+    filterVigence(ageVigence);
+    let dataResult = localStorage.resultDateVig;
     let array = JSON.parse(dataResult);
     array.forEach(element => {
       let fecha = element.Suscripción;
