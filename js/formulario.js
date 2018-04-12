@@ -29,8 +29,9 @@ var config = {
 
   const id =  parseInt(localStorage.getItem('lastItem'));
   console.log(id);
+  console.log(parseInt(localStorage.lastItem));
   const register = $('#new-convenio');
-  let infos = database.ref('convenios/'+id );
+  let infos = database.ref('convenios/'+ id );
   register.on('click',function(){
      infos.set({
       Bonificación: newBonificacion.val(), 
@@ -46,7 +47,10 @@ var config = {
 
 
     }, function () {
-      console.log('Se registro correctamente');
+      console.log(infos.Bonificación.length );
+      if( infos.Bonificación.length !== 0 && infos.Empresa.length !== 0 && infos.Incremento.length !== 0 && infos.Industria.length !== 0 && infos["N°"].length !== 0 && infos.Sindicato.length !== 0 && infos.Suscripción.length !== 0 && infos.Vigencia.length !== 0) {
+        console.log('Se registró correctamente');
+      }
     });
   })
 
