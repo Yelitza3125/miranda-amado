@@ -181,6 +181,23 @@ const checkCompany = $('#company-check');
   }
   
 });
+// Seleccionar tipo de filtro solo por año de suscripcion
+
+const checkSuscripcion = $('#suscription-check');
+
+checkSuscripcion.on('change', function() {
+  
+  if(checkSuscripcion[0].checked === true ){
+  
+    $('#suscripcion').addClass( "show" );
+    $('#suscripcion').removeClass( "hide" );
+  }
+  else{
+    $('#suscripcion').removeClass( "show" );
+    $('#suscripcion').addClass( "hide" );
+  }
+  
+});
 
 // Selección de Empresa
 // select.addEventListener('change', function(event) {
