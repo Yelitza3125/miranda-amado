@@ -1,12 +1,14 @@
-
+let position = 20;
 const compare = () => {
-
+    let pdf = '';
+    pdf = new jsPDF();
     let ObjConvenios = jQuery.parseJSON(localStorage.resultCompare);
     console.log(ObjConvenios);
 
     ObjConvenios.forEach(element => {
         let fecha = element.Suscripción;
         let fechames = fecha.slice(0, 10);
+
         let template = `
     <div class="col-md-3 col-lg-3 box">
       <div class="card-header">${element.Empresa}
@@ -41,6 +43,23 @@ const compare = () => {
 <br>
 `);
 
+
+
+        pdf.setFontSize(12);
+        pdf.text(20, 10, `Reporte Comparativo`);
+        pdf.text(20, `${position+5}`, `Empresa : ${element.Empresa}`);
+        pdf.text(20, `${position+10}`, `Industria : ${element.Industria}`);
+        pdf.text(20, `${position+15}`, `Sindicato : ${element.Sindicato}`);
+        pdf.text(20, `${position+20}`, `Suscripción : ${fechames}`);
+        pdf.text(20, `${position+25}`, `Vigencia : ${element.Vigencia}`);
+        pdf.text(20, `${position+30}`, `Bonificación : ${element.Bonificación}`);
+        pdf.text(20, `${position+35}`, `Incremento : ${element.Incremento}`);
+
+        position = position + 45;
+    });
+
+    $('#ViewReport').click(function () {
+        pdf.save('mipdf.pdf');
     });
 };
 compare();
