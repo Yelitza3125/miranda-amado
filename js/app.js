@@ -14,6 +14,7 @@ let info = database.ref('convenios');
 /*Función para obtener los datos*/
 info.on('value', function (datos) {
   data = datos.val();
+  console.log(data);
   function listEmpresas() {
     let Type = '';
     let ObjectTypes = [];
@@ -204,7 +205,7 @@ info.on('value', function (datos) {
     let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
     <div class="titulo-container">
      <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
-     <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+     <input type="checkbox" class="nroconvenio" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
     </div> 
      
     <div class="convenio-detalles">
@@ -243,20 +244,7 @@ $('body').on('click','.btn-view',function(){
   localStorage.data = JSON.stringify(data);
   localStorage.idButton = event.target.id;
 });
-
-// let newData = data.slice(0, 19);
-// newData.forEach(element => {
-//   if(element["N°"] === localStorage.getItem("idButton")) {
-//       console.log('Hola');
-//   }
-// });
-
-
-
-
-
-
-  $('.nroconvenio').click(function () {
+$(document).on('click', '.nroconvenio', function() {
     const checkCompare = $('.nroconvenio');
     let numero = $(this).data("nro");
     if (checkCompare[numero].checked === true) {
@@ -268,7 +256,6 @@ $('body').on('click','.btn-view',function(){
           resultCompare.push(data[numero]);
          
           }
-        
         });
       });
     } else {
@@ -284,7 +271,9 @@ $('body').on('click','.btn-view',function(){
       alert("Seleccione minimo 2 convenios");
 
     }
+    else{
     window.location.href = 'compare.html';
+    }
   });
 });
 
@@ -440,7 +429,7 @@ $('#filter-type').on('click', function () {
       let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
       <div class="titulo-container">
        <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
-       <input type="checkbox" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+       <input type="checkbox" class="nroconvenio" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
       </div> 
        
       <div class="convenio-detalles">
@@ -450,15 +439,18 @@ $('#filter-type').on('click', function () {
       </div>
     
       <div class="botones-container">
-        <button class="btn btn-detalles">
+        <button class="btn btn-detalles btn-view" id=${element["N°"]}>
         Ver detalles
         </button>
         <button class="btn btn-pdf text-blue-miranda"> Ver PDF
         </button>
       </div>
+    </div>
+    
+    
+    </div>
       </div>
      </div>`
-      
   
       $('#container-box').append(tem);
       $('.btn-pdf').click(function () {
