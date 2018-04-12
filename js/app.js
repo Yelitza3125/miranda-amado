@@ -169,7 +169,9 @@ info.on('value', function (datos) {
 const checkCompany = $('#company-check');
 
  checkCompany.on('change', function() {
+  
   if(checkCompany[0].checked === true ){
+  
     $('#company').addClass( "show" );
     $('#company').removeClass( "hide" );
   }
@@ -181,4 +183,7 @@ const checkCompany = $('#company-check');
 });
 
 // Selección de Empresa
+// select.addEventListener('change', function(event) {
 
+
+// });
