@@ -1,0 +1,133 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+/*Clases generales*/
+
+body, html {
+  height: 100%;
+  width: 100%
+}
+
+.text-blue-miranda {
+  color: rgb( 65, 85, 99);
+}
+
+.text-gold-amado {
+  color: rgb(213, 120, 0)
+}
+
+.text-upper {
+  text-transform: uppercase;
+}
+
+/*Logotipo*/
+
+.logo {
+  margin: 40px 0 20px 0;
+  width: 60%;
+}
+
+/*Texto de convenio*/
+
+.margen {
+  margin: 30px 0 20px 0;
+}
+
+
+/*botones*/
+
+.btn-nuevo {
+  background-color: #fff;
+  border: 2px solid rgb(213, 120, 0);
+  color: rgb(213, 120, 0);
+  margin: 10px 0 10px 0
+}
+
+.custom-file-label {
+  background-color: rgb(213, 120, 0);
+  color: #fff !important;
+}
+
+
+
+.btn-registrar {
+  background-color: rgb( 65, 85, 99);
+  color: #fff;
+  margin: 5px 0 20px 0px;
+}
+
+@media (min-width: 992px) {
+
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+  }
+
+  .flex-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo {
+    width: 60%;
+  }
+
+  .text-p {
+    width: 70%;
+    font-size: 20px;
+    margin: 20px 0 0 0;
+  }
+
+  .container-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  
+  }  
+
+  h3 {
+    font-size: 40px;
+  }
+
+  h3.margen {
+    margin: 0 0 50px 0;
+  }
+  
+
+  .font-desktop {
+    font-size: 18px;
+  }
+  .btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0 0 0;
+  }
+
+  .custom-file {
+    width: 45%;
+  }
+
+  .btn-nuevo {
+    width: 45%;
+    float: left;
+  }
+
+  .container-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-registrar {
+    margin: 10px 0 0 0;
+  }
+}  
