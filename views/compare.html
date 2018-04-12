@@ -1,37 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet">
-  <!--Importando bootstrap -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/token-input.css" type="text/css" />
-  <link rel="stylesheet" href="../css/home.css">
-  <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet">
+    <!--Importando bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/token-input.css" type="text/css" />
+    <link rel="stylesheet" href="../css/home.css">
+    <title>Home</title>
 </head>
+
 <body>
 
- 
-<div>
-    <button class="btn btn-primary" >Volver</button>
-  </div>
-<div class="container"  >
-  <div class="row" id="compare-box" >
+    <!--nav -->
 
-  </div>
-</div>
-  </div>
-  
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script> 
-  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-  <script type="text/javascript" src="../js/jquery.tokeninput.js"></script>
-  <script src="../js/home.js"></script>
-  <script src="../js/app.js"></script>
+    <nav class="navbar navbar-expand-lg navbar-light d-block d-sm-none">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <!-- <input class="form-control mr-sm-2 token-input" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0 buscar" type="button">
+            <i class="fas fa-search"></i>
+        </button> -->
+
+            <div class="btn-group grupo-filtro">
+                <button type="button" class="btn filtro">Filtrar por</button>
+                <button type="button" class="btn dropdown-toggle dropdown-toggle-split filtro-arrow" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu filtro-menu">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label text-blue-miranda" for="customCheck1">Suscripción</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label text-blue-miranda" for="customCheck1">Vigencia</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label text-blue-miranda" for="customCheck1">Empresa</label>
+                    </div>
+                    <div class="custom-control custom-checkbox text-blue-miranda">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label text-blue-miranda" for="customCheck1">Sindicato</label>
+                    </div>
+                    <div class="custom-control custom-checkbox text-blue-miranda">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">Industria</label>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block btn-filtro">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!--nav desktop-->
+
+    <nav class="navbar navbar-light justify-content-between d-none d-sm-block">
+        <a class="navbar-brand">
+            <img src="../assets/docs/logo-white.png" alt="" class="logo-white"> </a>
+        <div class="form-inline right">
+            <input class="form-control mr-sm-2 token-input" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-comparar buscar">Buscar</button>
+        </div>
+    </nav>
+
+    <!--imagen-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 img-mobile">
+                <p class="text-blue-miranda">Creando acciones conjuntas para el beneficio mutuo</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12 display-container mb-3">
+                <i class="fas fa-plus-circle icon-plus"></i>
+                <button class="btn  btn-comparar" id="Ver Reporte">
+                    Ver Reporte
+                </button>
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="container">
+        <div class="row" id="compare-box"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script type="text/javascript" src="../js/jquery.tokeninput.js"></script>
+    <script src="../js/compare.js"></script>
+
 
 </body>
+
 </html>

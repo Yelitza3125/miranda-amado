@@ -14,7 +14,6 @@ let info = database.ref('convenios');
 /*Función para obtener los datos*/
 info.on('value', function (datos) {
   data = datos.val();
-
   function listEmpresas() {
     let Type = '';
     let ObjectTypes = [];
@@ -27,7 +26,7 @@ info.on('value', function (datos) {
           name: Type
         });
     }
-
+    console.log(ObjectTypes);
     return ObjectTypes;
   }
 
@@ -93,7 +92,7 @@ info.on('value', function (datos) {
     });
 
   }
-  $('#buscar').click(function () {
+  $('.buscar').click(function () {
     let company = $('.token-input').tokenInput('get')[0]['name'];
     let inputvalue = $('.token-input').tokenInput('get');
     if (inputvalue.length === 0) {
@@ -119,34 +118,35 @@ $('#suscripcion1').click(function () {
 
 
 function filterSuscription(date) {
-  let result = [];
+  let resultSuscription = [];
   info.on('value', function (datos) {
     data = datos.val();
 
     data.forEach(function (element) {
-      if ((element.Suscripción).split()) {
+      if ((element.Suscripción).toString().substr(0, 4) === date) {
         // console.log((element.Suscripción).substr(0, 4))
-        result.push((element.Suscripción).substr(0, 4));
+        resultSuscription.push(element);
 
       }
     });
-    localStorage.setItem('result', JSON.stringify(result))
+    localStorage.setItem('resultSuscription', JSON.stringify(resultSuscription))
 
   });
 }
 
+function filterVigence(date) {
+  let resultDateVig = [];
 
-// Filtro por Empresa
-function filterCompany(company) {
-  let resultCompany = [];
   info.on('value', function (datos) {
     data = datos.val();
     data.forEach(element => {
-      if (element.Empresa == company)
-        resultCompany.push(element);
+      if ((element.Vigencia).toString().substr(-4) === date) {
+        resultDateVig.push(element);
+      }
 
     });
-    localStorage.setItem('result', JSON.stringify(resultCompany))
+
+    localStorage.setItem('resultDateVig', JSON.stringify(resultDateVig))
   });
 
 }
@@ -183,19 +183,17 @@ function filterIndustry(industry) {
 
 
 
-function filterVigence(date) {
-  let resultDateVig = [];
-
+// Filtro por Empresa
+function filterCompany(company) {
+  let resultCompany = [];
   info.on('value', function (datos) {
     data = datos.val();
     data.forEach(element => {
-      if ((element.Vigencia).toString().substr(-4) === date) {
-        resultDateVig.push(element);
-      }
+      if (element.Empresa == company)
+        resultCompany.push(element);
 
     });
-
-    localStorage.setItem('resultDateVig', JSON.stringify(resultDateVig))
+    localStorage.setItem('result', JSON.stringify(resultCompany))
   });
 
 }
@@ -217,7 +215,7 @@ info.on('value', function (datos) {
       <div class="col-3 col-lg-3">
         <div class="form-check">
          <label class="form-check-label">
-          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
+          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]-1}>
         </label>
         </div>
       </div>
@@ -240,19 +238,25 @@ info.on('value', function (datos) {
     });
 
   });
-  let resultCompare = [];
 
+  let resultCompare = [];
 
 
 
   $('.nroconvenio').click(function () {
     const checkCompare = $('.nroconvenio');
-    let numero = $(this).data("nro") - 1;
+    let numero = $(this).data("nro");
     if (checkCompare[numero].checked === true) {
-
-      data.forEach(element => {
-        if (element['N°'] == id)
-          resultCompare.push(element);
+      info.on('value', function (datos) {
+        data = datos.val();
+        data.forEach(elem => {
+         
+          if (elem['N°']-1 == numero){
+          resultCompare.push(data[numero]);
+         
+          }
+        
+        });
       });
     } else {
       resultCompare.pop();
@@ -314,13 +318,6 @@ checkVigencia.on('change', function () {
 
 // // Selección de Empresa
 const selectCompany = $('#select-company');
-//  selectCompany.on('change', function(event) {
-//  console.log('asaasasa');
-
-
-
-//  });
-
 let nameCompany = '';
 
 selectCompany.change(function () {
@@ -381,21 +378,22 @@ console.log(industrySelected);
 });
 
 // Seleccionar tipo de filtro solo por año de suscripcion
-
+let nameSelectSuscripcion = false;
 const checkSuscripcion = $('#suscription-check');
-
 checkSuscripcion.on('change', function () {
 
   if (checkSuscripcion[0].checked === true) {
-
+    nameSelectSuscripcion = true;
     $('#suscripcion').addClass("show");
     $('#suscripcion').removeClass("hide");
   } else {
+    nameSelectSuscripcion = false;
     $('#suscripcion').removeClass("show");
     $('#suscripcion').addClass("hide");
   }
 
 });
+
 
 
 let ageVigence = '';
@@ -405,6 +403,15 @@ $('#vigencia1').change(function () {
   ageVigence = selectAge;
 
 });
+
+let suscripcion = '';
+
+$('#suscripcion1').change(function () {
+  let selectsuscripcion1= $('select[id=suscripcion1]').val();
+  suscripcion = selectsuscripcion1;
+
+});
+
 
 $('#filter-type').on('click', function () {
 
@@ -525,8 +532,44 @@ $('#filter-type').on('click', function () {
       <h5 class="card-title">${element.Industria}</h5>
       <p class="card-text">${fechames}</p>
     </div>
-  </div>
-  </div>`
+   </div>
+   </div>`
+      $('#container-box').append(template);
+      $('.card-body').click(function () {
+        window.open(`${element.URL}`, '_blank');
+      });
+    });
+  }
+
+  if (nameSelectSuscripcion === true) {
+    filterSuscription(suscripcion);
+    let dataResult = localStorage.resultSuscription;
+    let array = JSON.parse(dataResult);
+    array.forEach(element => {
+      let fecha = element.Suscripción;
+      let fechames = fecha.slice(0, 10);
+      let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
+         
+      <div class="card-header">
+      <div class="row">
+      <div class="col-9 col-lg-9">
+      <p>${element.Empresa}</p>
+      </div>
+      <div class="col-3 col-lg-3">
+        <div class="form-check">
+         <label class="form-check-label">
+          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
+        </label>
+        </div>
+      </div>
+      </div>
+      </div>
+    <div class="card-body">
+      <h5 class="card-title">${element.Industria}</h5>
+      <p class="card-text">${fechames}</p>
+    </div>
+   </div>
+   </div>`
       $('#container-box').append(template);
       $('.card-body').click(function () {
         window.open(`${element.URL}`, '_blank');
