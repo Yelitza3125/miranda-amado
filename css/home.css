@@ -140,6 +140,14 @@ background-color: rgb( 65, 85, 99);
 .over{
   overflow: auto;
 }
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
 
 @media (min-width: 992px) { 
 
