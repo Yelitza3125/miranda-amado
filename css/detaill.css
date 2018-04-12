@@ -1,0 +1,61 @@
+.header {
+    background-color: rgb( 65, 85, 99);
+  }
+  
+
+  .logo-white {
+    width: 35%;
+    
+  }
+
+  .btn-add {
+    background-color: rgb( 65, 85, 99);
+    color: white !important;
+    border-radius: 7px;
+    border:none;
+    padding: 9px;
+    margin-right: 5px;
+    
+  }
+  
+  .title-detail {
+    font-size: 21px;
+    color:  rgb(213, 120, 0);
+  }
+
+  .btn-add:hover {
+    text-decoration: none;
+  }
+
+  .detaill-campo {
+    font-size: 14px;
+  }
+
+  embed{
+    height: 600px;
+    width: 100%;
+  }
+
+  .filtro, .filtro-arrow .busqueda, .btn-filtro, .btn-comparar {
+    background-color: rgb(213, 120, 0);
+    color: #ffffff;
+    border: none;
+  }
+  
+  .btn-comparar{
+    padding: 5px 30px;
+  }
+
+  .rela{
+    position: relative;
+    bottom: 1px;
+  }
+  
+  .rela:hover{
+    color: white;
+  }
+
+  hr {
+    height: 0.8px;
+    background-color: #FF9800;
+  }
