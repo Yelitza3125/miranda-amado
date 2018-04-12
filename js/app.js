@@ -122,6 +122,7 @@ function filterCompany(company) {
 
 }
 
+
 function filterVigence(date) {
   let resultDateVig = [];
 
@@ -142,24 +143,92 @@ function filterVigence(date) {
 // Mostrar los 20 primeros
 
 info.on('value', function (datos) {
+
   data = datos.val();
-  let news = data.slice(0,19);
+  let news = data.slice(0, 19);
   news.forEach(element => {
     let fecha = element.Suscripción;
     let fechames = fecha.slice(0, 10);
-    let template = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3  " >
-    <div class="card-header">${element.Empresa}</div>
+    let template = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3" >
+    <div class="row">
+      <div class="col-lg-9">
+      <div class="card-header">${element.Empresa}</div>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-check">
+         <label class="form-check-label">
+          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
+        </label>
+        </div>
+      </div>
+    </div>
+   
     <div class="card-body">
       <h5 class="card-title">${element.Industria}</h5>
       <p class="card-text">${fechames}</p>
     </div>
   </div>
   </div>`
-  $('#container-box').append(template);
-  $('.box').click(function () {
-    window.open(`${element.URL}`, '_blank');
+
+    $('#container-box').append(template);
+    $('.card-body').click(function () {
+      window.open(`${element.URL}`, '_blank');
+    });
+
   });
+  let resultCompare = [];
+
+
+
+
+  $('.nroconvenio').click(function () {
+    const checkCompare = $('.nroconvenio');
+    let numero = $(this).data("nro") - 1;
+    if (checkCompare[numero].checked === true) {
+
+      data.forEach(element => {
+        if (element['N°'] == id)
+          resultCompare.push(element);
+      });
+    }
+    else {
+      resultCompare.pop();
+
+    }
+    console.log(resultCompare);
+    localStorage.setItem('resultCompare', JSON.stringify(resultCompare))
+
+
+  });
+  $('#comparar').click(function () {
+    let lengthCard = resultCompare.length;
+    if (lengthCard < 2) {
+      alert("Seleccione minimo 2 convenios");
+
+    }
+    window.location.href = 'compare.html';
   });
 
-  
+  const compare = () => {
+    
+    let ObjConvenios = jQuery.parseJSON(localStorage.resultCompare);
+    console.log(ObjConvenios);
+    
+    ObjConvenios.forEach(element => {
+      let fecha = element.Suscripción;
+      let fechames = fecha.slice(0, 10);
+    let template = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3" >
+      <div class="card-header">${element.Empresa}</div>   
+    <div class="card-body">
+      <h5 class="card-title">${element.Industria}</h5>
+      <p class="card-text">${fechames}</p>
+    </div>
+  </div>
+  </div>`
+
+    $('#compare-box').append(template);
+  });
+};
+  compare();
 });
+
