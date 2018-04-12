@@ -42,6 +42,14 @@ p.welcome {
   background-color: rgb(213, 120, 0);
   color: #ffffff;
 }
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
 /*Diseño para desktop*/
 
 @media (min-width: 992px) { 
