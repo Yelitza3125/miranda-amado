@@ -2,6 +2,7 @@
 
 El siguiente proyecto es una plataforma web responsive que brinda al usuario información sobre los convenios colectivos realizados por la firma de abogados Miranda & Amado. Permite comparar, filtrar, buscar y añadir los convenios de acuerdo a palabras clave. Además si se desea, puede descargarse el documento en formato pdf.
 
+![Plataforma Miranda & Amado](https://user-images.githubusercontent.com/32287220/38677263-5c1e68d6-3e23-11e8-8fa9-f968456e5ad4.png)
 
 # Equipo de trabajo: 
 
@@ -99,7 +100,6 @@ Luego de una nueva deliberación en el equipo y corrección de errores, se decid
 
 [User flow](https://docs.google.com/presentation/d/1QAvqmcUD1D995y0dSZOB7MC0iBu4jZoU1t-EpNzzRns/edit?usp=sharing)
 
-
 ### E. Herramientas utilizadas:
 
 - HTML5
@@ -107,3 +107,4 @@ Luego de una nueva deliberación en el equipo y corrección de errores, se decid
 - Bootstrap 4.
 - Firebase
 - Javascript.
+- LocalStorage.

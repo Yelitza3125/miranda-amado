@@ -179,6 +179,11 @@ input[type=checkbox]
   background-color: white;
   border: 2px solid rgb(213, 120, 0);
   color: rgb(213, 120, 0);
+  padding:6px 43px;
+}
+
+.btn-border:hover{
+  color: rgb(213, 120, 0);
 }
 
 .filtro-menu {
@@ -207,8 +212,15 @@ input[type=checkbox]
   align-items: center;
   height: 30vh;
   background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat; 
-  background-image: url("../assets/images/law.jpg");
+  background-image: url("../assets/images/law.jpeg");
+}
+
+
+.text-logro {
+  margin-left: 35px;
+  font-size: 1.5em;
 }
 
 .back-gris {

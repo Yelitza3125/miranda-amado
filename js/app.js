@@ -433,7 +433,7 @@ $('#filter-type').on('click', function () {
       let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
       <div class="titulo-container">
        <p class="titulo-text text-blue-miranda">${element.Empresa}</p>
-       <input type="checkbox" class="nroconvenio" id="a-${element["N°"]-1}" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
+       <input type="checkbox" class="nroconvenio" aria-label="Checkbox for following text input" data-nro=${element["N°"]-1} >
       </div> 
        
       <div class="convenio-detalles">
@@ -455,7 +455,6 @@ $('#filter-type').on('click', function () {
     </div>
       </div>
      </div>`
-      
   
       $('#container-box').append(tem);
       $('.btn-pdf').click(function () {

@@ -12,12 +12,20 @@ body, html {
   width: 100%
 }
 
+.icono {
+  font-size: 2.3em;
+  color: rgb(213, 120, 0);
+  position: relative;
+  margin-right: 380px;
+  margin-bottom: 1px;
+}
+
 .text-blue-miranda {
   color: rgb( 65, 85, 99);
 }
 
 .text-gold-amado {
-  color: rgb(213, 120, 0)
+  color: rgb(213, 120, 0);
 }
 
 .text-upper {
