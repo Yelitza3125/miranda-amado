@@ -152,15 +152,33 @@ function filterVigence(date) {
 
 let syndicate = document.getElementById('checkbox1');
 let industry = document.getElementById('checkbox2');
-let selectSyndicatesContainer = $('#select-syndicates');
-let selectIndustriesContainer = $('#select-industries');
-let selectSyndicates = $('#select-2');
-let selectIndustries = $('#select-3');
+let selectSyndicates = $('#select-syndicates');
+let selectIndustries = $('#select-industries');
 info.on('value', function (datos) {
   data = datos.val();
   // Mostrar los filtros escogidos en el modal
-  syndicate.addEventListener('change', function() {
+  syndicate.addEventListener('change', function () {
+    if (syndicate.checked === true) {
+      selectSyndicates.addClass('show');
+      selectSyndicates.removeClass('hide');
+    }
 
+    if (syndicate.checked === false) {
+      selectSyndicates.addClass('hide');
+      selectSyndicates.removeClass('show');
+    }
+  });
+
+  industry.addEventListener('change', function () {
+    if (industry.checked === true) {
+      selectIndustries.addClass('show');
+      selectIndustries.removeClass('hide');
+    }
+    if (industry.checked === false) {
+      selectIndustries.addClass('hide');
+      selectIndustries.removeClass('show');
+    }
+  });
   // Mostrar los 20 primeros
   let news = data.slice(0, 19);
   news.forEach(element => {
@@ -178,38 +196,6 @@ info.on('value', function (datos) {
     $('.box').click(function () {
       window.open(`${element.URL}`, '_blank');
     });
-  });
-
- // Mostrar resultados de búsqueda según la opción escogida
-
-  let syndicateSelected = '';
-  selectIndustries.change(function () {
-  optionSelected = $('select[id=select-3]').val();
-  syndicateSelected = optionSelected;
-  console.log(syndicateSelected);
-  });
-
-  let industrySelected = '';
-  selectSyndicates.change(function () {
-  optionSelected2 = $('select[id=select-2]').val();
-  industrySelected = optionSelected2;
-  console.log(industrySelected);
-  });
-  
- let buttonFilter = $('#filter-type');
-  // Filtrando los convenios
-  buttonFilter.on('click', function() {
-    localStorage.syndicate = $('select[id=select-2]').val();
-    localStorage.industry = $('select[id=select-3]').val();
-    var cards = $('.card-title');
-    console.log(cards);
-    // for(var i = 0; i < cards ; i++) {
-    //   console.log(cards[i]);
-    //   if (industrySelected === cards[i].innerHTML) {
-    //     debugger;
-    //     console.log(cards[i].innerHTML);
-    //   }
-    // };
   });
 
 });
@@ -293,4 +279,6 @@ $('#filter-type').on('click', function () {
       });
     });
   }
+
+
 })
