@@ -5,6 +5,15 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.carousel {
+  height:450px ;
+}
+
+.carrusel-img {
+  height:450px;
+  
+}
+
 #muestra {
   text-align: center;
 }
@@ -287,8 +296,8 @@ input[type=checkbox]
 }
 
 .box {
-  margin: 0 8px 8px 0;
-  padding: 0;
+  box-sizing: border-box;
+  padding: 7px;
 }
 
 .volver {
@@ -317,6 +326,11 @@ input[type=checkbox]
     text-align: left;
     width: 50%;
 
+  }
+
+  .text-white {
+    font-size: 2.4em;
+    font-weight: bolder;
   }
   
 /*Logotipo*/

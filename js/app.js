@@ -9,6 +9,7 @@ let config = {
 };
 firebase.initializeApp(config);
 
+$('.carousel').carousel()
 let database = firebase.database();
 let info = database.ref('convenios');
 /*Función para obtener los datos*/
