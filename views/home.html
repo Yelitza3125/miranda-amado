@@ -14,26 +14,93 @@
 <body>
 
   <!--nav -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-       <!-- <a class="navbar-brand" href="#">Hidden brand</a> -->
+  
+  <nav class="navbar navbar-expand-lg navbar-light d-block d-sm-none">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         
           <input class="form-control mr-sm-2 token-input" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" id="buscar" type="button">
-              <i class="fas fa-search"></i>
+            <i class="fas fa-search"></i>
+          </button>
+      </form>
+      
+      <div class="btn-group grupo-filtro">
+        <button type="button" class="btn filtro">Filtrar por</button>
+        <button type="button" class="btn dropdown-toggle dropdown-toggle-split filtro-arrow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div class="dropdown-menu filtro-menu">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label text-blue-miranda" for="customCheck1">Suscripción</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label text-blue-miranda" for="customCheck1">Vigencia</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label text-blue-miranda" for="customCheck1">Empresa</label>
+          </div>
+          <div class="custom-control custom-checkbox text-blue-miranda">
+            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label text-blue-miranda" for="customCheck1">Sindicato</label>
+          </div>
+          <div class="custom-control custom-checkbox text-blue-miranda">
+            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label" for="customCheck1">Industria</label>
+          </div>
+          <button type="button" class="btn btn-primary btn-block btn-filtro">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!--nav desktop-->
+
+  <nav class="navbar navbar-light justify-content-between d-none d-sm-block">
+      <a class="navbar-brand">
+      <img src="../assets/docs/logo-white.png" alt="" class="logo-white"> </a>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Buscar</button>
+      </form>
+    </nav>
+
+  <!--imagen-->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 img-mobile">
+        <p class="text-blue-miranda">Creando acciones conjuntas para el beneficio mutuo</p>
+      </div>
+    </div>
+  </div>
 
           </button>
       </div>
     </nav>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">
-         Empresa
-        </label>
-      </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" value="" id="company-check">
+      <label class="form-check-label" for="company-check">Empresa</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="checkbox1" value="option1">
+      <label class="form-check-label" for="checkbox1">Sindicato</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="checkbox2" value="option2">
+      <label class="form-check-label" for="checkbox2">Industria</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="suscription-check">
+      <label class="form-check-label" for="checkbox3">Suscripción</label>
+    </div>
 <div>
   <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Buscar</button>
 </div>
@@ -42,7 +109,8 @@
     <button class="btn btn-primary" id="comparar" >Comparar</button>
   </div>
 <div class="container"  >
-  <div class="row" id="container-box" >
+  <div class="row" id="container-box" ></div>
+  
 
   </div>
 </div>
@@ -57,26 +125,27 @@
           </button>
         </div>
         <div class="modal-body">
-            <div class="form-group" id="company">
-                <label for="exampleFormControlSelect1">Empresa</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option>APM Terminals Insland Services S.A.</option>
-                  <option>Papelera Nacional S.A. - PANASA</option>
-                  <option>Sociedad Agrícola Drokasa S.A.</option>
-                  <option>Hoteles Sheraton del Perú S.A.C.</option>
-                  <option>Enel Distribución Perú S.A.A</option>
-                  <option>APM Terminals Callao S.A.</option>
-                  <option>Luz del Sur. S.A.</option>
-                  <option>Statkraft Perú S.A.</option>
-                  <option>Red de Energía del Perú S.A.</option>
-                  <option>Club Regatas Lima</option>
-                  <option>Electro Dunas S.A.A.</option>
-                  <option>Edelnor S.A.A.</option>
+            <div class="form-group hide" id="company"  >
+                <label for="select-company">Empresa</label>
+                <select class="form-control company-select" id="select-company">
+                    <option value="">Selecciona una Empresa</option>
+                  <option value="APM Terminals Insland Services S.A.">APM Terminals Insland Services S.A.</option>
+                  <option value="Papelera Nacional S.A. - PANASA">Papelera Nacional S.A. - PANASA</option>
+                  <option value="Sociedad Agrícola Drokasa S.A.">Sociedad Agrícola Drokasa S.A.</option>
+                  <option value="Hoteles Sheraton del Perú S.A.C.">Hoteles Sheraton del Perú S.A.C.</option>
+                  <option value="Enel Distribución Perú S.A.A">Enel Distribución Perú S.A.A</option>
+                  <option value="APM Terminals Callao S.A.">APM Terminals Callao S.A.</option>
+                  <option value="Luz del Sur. S.A.">Luz del Sur. S.A.</option>
+                  <option value="Statkraft Perú S.A.">Statkraft Perú S.A.</option>
+                  <option value="Red de Energía del Perú S.A.">Red de Energía del Perú S.A.</option>
+                  <option value="Club Regatas Lima">Club Regatas Lima</option>
+                  <option value="Electro Dunas S.A.A.">Electro Dunas S.A.A.</option>
+                  <option value="Edelnor S.A.A.">Edelnor S.A.A.</option>
                 </select>
               </div>
-          <div class="form-group">
-            <label for="exampleFormControlSelect2">Sindicato</label>
-            <select class="form-control" id="exampleFormControlSelect2">
+          <div class="form-group hide"  id="select-syndicates">
+            <label for="select-2">Sindicato</label>
+            <select class="form-control" id="select-2">
               <option>STAPMTIS</option>
               <option>SINTRAPANA</option>
               <option>SINTRAGROKASA</option>
@@ -98,9 +167,9 @@
               <option>SINTRAAOPIP</option>
             </select>
           </div>
-          <div class="form-group">
-            <label for="exampleFormControlSelect3">Industria</label>
-            <select class="form-control" id="exampleFormControlSelect3">
+          <div class="form-group hide"  id="select-industries">
+            <label for="select-3">Industria</label>
+            <select class="form-control" id="select-3">
               <option>Logistica y transporte</option>
               <option>Papel y derivados</option>
               <option>Agroindustria</option>
@@ -109,8 +178,19 @@
               <option>Clubes</option>
             </select>
           </div>
+          <div class="form-group hide" id="suscripcion">
+            <label for="exampleFormControlSelect3">Suscripción</label>
+            <select class="form-control" id="suscripcion1">
+              <option>2018</option>
+              <option>2017</option>
+              <option>2016</option>
+              <option>2015</option>
+              <option>2014</option>
+              <option>2013</option>
+            </select>
+          </div>
           <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Filtrar</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal"  id="filter-type">Filtrar</button>
           </div>
         </div>
         </div>

@@ -27,7 +27,7 @@ info.on('value', function (datos) {
           name: Type
         });
     }
-    console.log(ObjectTypes);
+
     return ObjectTypes;
   }
 
@@ -90,21 +90,32 @@ info.on('value', function (datos) {
 });
 
 
-function filterSuscription() {
+$('#suscripcion1').click(function(){
+  // ("#sprints").change(function () {
+    nsprint = $('select[id=suscripcion1]').val();
+  console.log(nsprint);
+    // $('#sprints').val($(this).val());
+})
+
+
+
+
+function filterSuscription(date) {
   let result = [];
   info.on('value', function (datos) {
     data = datos.val();
-    console.log(data);
+
     data.forEach(function (element) {
-      if ((element.Suscripción).split) {
-        console.log((element.Suscripción).substr(0, 4))
+      if ((element.Suscripción).split()) {
+        // console.log((element.Suscripción).substr(0, 4))
+      result.push((element.Suscripción).substr(0, 4));
+      
       }
-      // result.push(element);
     });
+    localStorage.setItem('result', JSON.stringify(result))
+    
   });
-  return (result)
 }
-filterSuscription()
 
 
 // Filtro por Empresa
@@ -140,11 +151,37 @@ function filterVigence(date) {
 
 }
 
-// Mostrar los 20 primeros
-
+let syndicate = document.getElementById('checkbox1');
+let industry = document.getElementById('checkbox2');
+let selectSyndicates = $('#select-syndicates');
+let selectIndustries = $('#select-industries');
 info.on('value', function (datos) {
 
   data = datos.val();
+  // Mostrar los filtros escogidos en el modal
+  syndicate.addEventListener('change', function () {
+    if (syndicate.checked === true) {
+      selectSyndicates.addClass('show');
+      selectSyndicates.removeClass('hide');
+    }
+
+    if (syndicate.checked === false) {
+      selectSyndicates.addClass('hide');
+      selectSyndicates.removeClass('show');
+    }
+  });
+
+  industry.addEventListener('change', function () {
+    if (industry.checked === true) {
+      selectIndustries.addClass('show');
+      selectIndustries.removeClass('hide');
+    }
+    if (industry.checked === false) {
+      selectIndustries.addClass('hide');
+      selectIndustries.removeClass('show');
+    }
+  });
+  // Mostrar los 20 primeros
   let news = data.slice(0, 19);
   news.forEach(element => {
     let fecha = element.Suscripción;
@@ -197,8 +234,6 @@ info.on('value', function (datos) {
     }
     console.log(resultCompare);
     localStorage.setItem('resultCompare', JSON.stringify(resultCompare))
-
-
   });
   $('#comparar').click(function () {
     let lengthCard = resultCompare.length;
@@ -232,3 +267,86 @@ info.on('value', function (datos) {
   compare();
 });
 
+
+// Seleccionar tipo de filtro solo Empresa
+let nameSelectCompany = false;
+const checkCompany = $('#company-check');
+
+checkCompany.on('change', function () {
+
+  if (checkCompany[0].checked === true) {
+    nameSelectCompany = true;
+    $('#company').addClass("show");
+    $('#company').removeClass("hide");
+  } else {
+    nameSelectCompany = false;
+    $('#company').removeClass("show");
+    $('#company').addClass("hide");
+  }
+
+});
+
+// // Selección de Empresa
+const selectCompany = $('#select-company');
+//  selectCompany.on('change', function(event) {
+//  console.log('asaasasa');
+
+
+
+//  });
+
+let nameCompany = '';
+
+selectCompany.change(function () {
+  let selectName = $('select[id=select-company]').val();
+  nameCompany = selectName;
+
+});
+// Seleccionar tipo de filtro solo por año de suscripcion
+
+const checkSuscripcion = $('#suscription-check');
+
+checkSuscripcion.on('change', function() {
+  
+  if(checkSuscripcion[0].checked === true ){
+  
+    $('#suscripcion').addClass( "show" );
+    $('#suscripcion').removeClass( "hide" );
+  }
+  else{
+    $('#suscripcion').removeClass( "show" );
+    $('#suscripcion').addClass( "hide" );
+  }
+  
+});
+
+
+
+
+$('#filter-type').on('click', function () {
+  
+   $('#container-box').empty();
+  if (nameSelectCompany === true) {
+    filterCompany(nameCompany);
+    let dataResult = localStorage.result;
+    let array = JSON.parse(dataResult);
+    array.forEach(element => {
+      let fecha = element.Suscripción;
+      let fechames = fecha.slice(0, 10);
+      let template = `<div class="col-6 col-lg-3 box"><div class="card bg-light mb-3  " >
+   <div class="card-header">${element.Empresa}</div>
+   <div class="card-body">
+     <h5 class="card-title">${element.Industria}</h5>
+     <p class="card-text">${fechames}</p>
+   </div>
+ </div>
+ </div>`
+      $('#container-box').append(template);
+      $('.box').click(function () {
+        window.open(`${element.URL}`, '_blank');
+      });
+    });
+  }
+
+
+})

@@ -9,8 +9,8 @@ var config = {
 };
   firebase.initializeApp(config);
   
-    var passwordLogin = $('.password-login');
-    var emailLogin = $('.email-login');
+    var passwordLogin = $('#password-login');
+    var emailLogin = $('#email-login');
     var validatePassword = false;
     var validateEmail = false;
     
@@ -37,17 +37,17 @@ var config = {
   
     function validateUser() {
       if (validateEmail && validatePassword) {
-        $('.btn-login').attr('disabled', false);
+        $('#btn-login').attr('disabled', false);
       }
     }
   
     function inactiveUser() {
-      $('.btn-login').attr('disabled', 'disabled');
+      $('#btn-login').attr('disabled', 'disabled');
     }
     
     // Autentificación por email y password
     
-    $('.btn-login').click(function(event) {
+    $('#btn-login').click(function(event) {
       event.preventDefault();
   
       var email = emailLogin.val();
@@ -56,14 +56,14 @@ var config = {
       firebase.auth().signInWithEmailAndPassword(email, password)
         .catch(function(error) {
           // Handle Errors here.
-          // alert('email y/o contraseña incorrecta');
+        //   alert('email y/o contraseña incorrecta');
           var errorCode = error.code;
           var errorMessage = error.message;
         });
   
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
-          $(location).attr('href', 'view/home.html');
+          $(location).attr('href', 'views/home.html');
         }
       });
     });
@@ -71,7 +71,7 @@ var config = {
   
     // Login con Gmail
     var provider = new firebase.auth.GoogleAuthProvider();
-    $('.btn-google').on('click', function() {
+    $('#btn-google').on('click', function() {
       event.preventDefault();
       firebase.auth().signInWithPopup(provider).then(function(result) {
         var token = result.credential.accessToken;
@@ -85,7 +85,7 @@ var config = {
           profilePhoto: user.photoURL
         }).then(
           user => {
-            $(location).attr('href', 'view/home.html');
+            $(location).attr('href', 'views/home.html');
           });
       }).catch(function(error) {
       // Handle Errors here.

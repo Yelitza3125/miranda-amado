@@ -18,6 +18,10 @@ body, html, section {
 .text-gold-amado {
   color: rgb(213, 120, 0)
 }
+
+.center {
+  text-align: center;
+}
 /*Logotipo*/
 
 .logo {
@@ -38,6 +42,7 @@ p.welcome {
   background-color: rgb(213, 120, 0);
   color: #ffffff;
 }
+
 /*Diseño para desktop*/
 
 @media (min-width: 992px) { 
@@ -60,7 +65,7 @@ p.welcome {
   }
 
   .logo {
-    width: 80%;
+    width: 70%;
     margin: 0 0 1.5em 0;
     
   }
@@ -68,7 +73,7 @@ p.welcome {
   .border-form {
     border: 3px solid rgb(213, 120, 0);
     border-radius: 10px;
-    padding: 6em 2em;
+    padding: 60px 30px;
   }
 
   p.welcome {
@@ -82,5 +87,48 @@ p.welcome {
 
   .btn {
     margin: 3em 0 0em 0;
+  }
+
+  .btn-gmail {
+    width: 100%;
+    background-color:white; 
+    color: rgb(213, 120, 0);
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 16px;
+    vertical-align: middle;
+    padding: 2px;
+    border-color:rgb(213, 120, 0);
+  }
+
+  .icon-gmail {
+   background-color: white !important;
+   color: rgb(213, 120, 0);
+   font-size: 1.9em;
+   margin-right: 10px;
+   
+  }
+
+  /* #btn-google {
+    background-color: transparent;
+    border: 1px solid rgb(223, 21, 21);
+    border-radius: 10px;
+  } */
+
+  span.line::before {
+   content: '';
+   width: 20%;
+   height: 1px;
+   background-color: rgb( 65, 85, 99);
+   display: inline-flex;
+   margin: 10px;
+  }
+  span.line::after {
+   content: '';
+   width: 20%;
+   height: 1px;
+   background-color: rgb( 65, 85, 99);
+   display: inline-flex;
+   margin: 10px;
   }
 }
