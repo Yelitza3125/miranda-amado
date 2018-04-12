@@ -13,7 +13,7 @@
 }
 
 embed{
-  height: 550px;
+  height: 600px;
   width: 100%;
 }
 
@@ -233,7 +233,7 @@ hr {
 
   .navbar {
     background-color: rgb( 65, 85, 99);
-    display: block !important;
+    
   }
 
   .img-mobile{
