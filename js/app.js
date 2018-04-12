@@ -119,20 +119,37 @@ $('#suscripcion1').click(function () {
 
 
 function filterSuscription(date) {
-  let result = [];
+  let resultSuscription = [];
   info.on('value', function (datos) {
     data = datos.val();
 
     data.forEach(function (element) {
-      if ((element.Suscripción).split()) {
+      if ((element.Suscripción).toString().substr(0, 4) === date) {
         // console.log((element.Suscripción).substr(0, 4))
-        result.push((element.Suscripción).substr(0, 4));
+        resultSuscription.push(element);
 
       }
     });
-    localStorage.setItem('result', JSON.stringify(result))
+    localStorage.setItem('resultSuscription', JSON.stringify(resultSuscription))
 
   });
+}
+
+function filterVigence(date) {
+  let resultDateVig = [];
+
+  info.on('value', function (datos) {
+    data = datos.val();
+    data.forEach(element => {
+      if ((element.Vigencia).toString().substr(-4) === date) {
+        resultDateVig.push(element);
+      }
+
+    });
+
+    localStorage.setItem('resultDateVig', JSON.stringify(resultDateVig))
+  });
+
 }
 
 
@@ -152,22 +169,7 @@ function filterCompany(company) {
 }
 
 
-function filterVigence(date) {
-  let resultDateVig = [];
 
-  info.on('value', function (datos) {
-    data = datos.val();
-    data.forEach(element => {
-      if ((element.Vigencia).toString().substr(-4) === date) {
-        resultDateVig.push(element);
-      }
-
-    });
-
-    localStorage.setItem('resultDateVig', JSON.stringify(resultDateVig))
-  });
-
-}
 
 let syndicate = document.getElementById('checkbox1');
 let industry = document.getElementById('checkbox2');
@@ -366,21 +368,22 @@ selectCompany.change(function () {
 
 });
 // Seleccionar tipo de filtro solo por año de suscripcion
-
+let nameSelectSuscripcion = false;
 const checkSuscripcion = $('#suscription-check');
-
 checkSuscripcion.on('change', function () {
 
   if (checkSuscripcion[0].checked === true) {
-
+    nameSelectSuscripcion = true;
     $('#suscripcion').addClass("show");
     $('#suscripcion').removeClass("hide");
   } else {
+    nameSelectSuscripcion = false;
     $('#suscripcion').removeClass("show");
     $('#suscripcion').addClass("hide");
   }
 
 });
+
 
 
 let ageVigence = '';
@@ -390,6 +393,15 @@ $('#vigencia1').change(function () {
   ageVigence = selectAge;
 
 });
+
+let suscripcion = '';
+
+$('#suscripcion1').change(function () {
+  let selectsuscripcion1= $('select[id=suscripcion1]').val();
+  suscripcion = selectsuscripcion1;
+
+});
+
 
 $('#filter-type').on('click', function () {
 
@@ -464,8 +476,48 @@ $('#filter-type').on('click', function () {
       <h5 class="card-title">${element.Industria}</h5>
       <p class="card-text">${fechames}</p>
     </div>
-  </div>
-  </div>`
+   </div>
+   </div>`
+      $('#container-box').append(template);
+      $('.card-body').click(function () {
+        window.open(`${element.URL}`, '_blank');
+      });
+    });
+  }
+
+  if (nameSelectSuscripcion === true) {
+    filterSuscription(suscripcion);
+    let dataResult = localStorage.resultSuscription;
+    let array = JSON.parse(dataResult);
+    array.forEach(element => {
+      let fecha = element.Suscripción;
+      let fechames = fecha.slice(0, 10);
+      let template = `<div class="col-12 col-lg-3 box"><div class="card bg-light mb-3" >
+         
+      <div class="card-header">
+      <div class="row">
+      <div class="col-9 col-lg-9">
+      <p>${element.Empresa}</p>
+      </div>
+      <div class="col-3 col-lg-3">
+        <div class="form-check">
+         <label class="form-check-label">
+          <input type="checkbox" class="form-check-input nroconvenio" data-nro=${element["N°"]}>
+        </label>
+        </div>
+      </div>
+      </div>
+      </div>
+      
+      
+  
+   
+    <div class="card-body">
+      <h5 class="card-title">${element.Industria}</h5>
+      <p class="card-text">${fechames}</p>
+    </div>
+   </div>
+   </div>`
       $('#container-box').append(template);
       $('.card-body').click(function () {
         window.open(`${element.URL}`, '_blank');
