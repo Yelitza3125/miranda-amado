@@ -55,12 +55,16 @@ info.on('value', function (datos) {
       resultCompany.forEach(element => {
         let fecha = element.Suscripción;
         let fechames = fecha.slice(0, 10);
-        $('#convenio').append(`
+        $('#container-box').append(`
         
-          <div class="card-body">
-          <h5 class="card-title">${element.Empresa} </h5>
-          <p class="card-text"> ${fechames} </p>
+        <div class="col-6 col-lg-3 box"><div class="card bg-light mb-3  " >
+        <div class="card-header">${element.Empresa}</div>
+        <div class="card-body">
+          <h5 class="card-title">${element.Industria}</h5>
+          <p class="card-text">${fechames}</p>
         </div>
+      </div>
+      </div>
         `);
 
 
@@ -77,7 +81,7 @@ info.on('value', function (datos) {
     if (inputvalue.length === 0) {
       alert('ingrese un valor');
     } else {
-      $('#convenio').empty();
+      $('#container-box').empty();
       filterCompany(company);
 
     }
