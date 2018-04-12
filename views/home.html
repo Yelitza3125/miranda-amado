@@ -116,7 +116,7 @@
   <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Buscar</button>
 </div>
 <div class="container"  >
-  <div class="row" id="container-box" >
+  <div class="row" id="container-box" ></div>
   
 
     <!-- Modal -->
@@ -131,20 +131,21 @@
         </div>
         <div class="modal-body">
             <div class="form-group hide" id="company"  >
-                <label for="exampleFormControlSelect1">Empresa</label>
-                <select class="form-control company-select" id="exampleFormControlSelect1">
-                  <option value="c1">APM Terminals Insland Services S.A.</option>
-                  <option value="c2">Papelera Nacional S.A. - PANASA</option>
-                  <option value="c3">Sociedad Agrícola Drokasa S.A.</option>
-                  <option value="c4">Hoteles Sheraton del Perú S.A.C.</option>
-                  <option value="c5">Enel Distribución Perú S.A.A</option>
-                  <option value="c6">APM Terminals Callao S.A.</option>
-                  <option value="c7">Luz del Sur. S.A.</option>
-                  <option value="c8">Statkraft Perú S.A.</option>
-                  <option value="c9">Red de Energía del Perú S.A.</option>
-                  <option value="c10">Club Regatas Lima</option>
-                  <option value="c11">Electro Dunas S.A.A.</option>
-                  <option value="c12">Edelnor S.A.A.</option>
+                <label for="select-company">Empresa</label>
+                <select class="form-control company-select" id="select-company">
+                    <option value="">Selecciona una Empresa</option>
+                  <option value="APM Terminals Insland Services S.A.">APM Terminals Insland Services S.A.</option>
+                  <option value="Papelera Nacional S.A. - PANASA">Papelera Nacional S.A. - PANASA</option>
+                  <option value="Sociedad Agrícola Drokasa S.A.">Sociedad Agrícola Drokasa S.A.</option>
+                  <option value="Hoteles Sheraton del Perú S.A.C.">Hoteles Sheraton del Perú S.A.C.</option>
+                  <option value="Enel Distribución Perú S.A.A">Enel Distribución Perú S.A.A</option>
+                  <option value="APM Terminals Callao S.A.">APM Terminals Callao S.A.</option>
+                  <option value="Luz del Sur. S.A.">Luz del Sur. S.A.</option>
+                  <option value="Statkraft Perú S.A.">Statkraft Perú S.A.</option>
+                  <option value="Red de Energía del Perú S.A.">Red de Energía del Perú S.A.</option>
+                  <option value="Club Regatas Lima">Club Regatas Lima</option>
+                  <option value="Electro Dunas S.A.A.">Electro Dunas S.A.A.</option>
+                  <option value="Edelnor S.A.A.">Edelnor S.A.A.</option>
                 </select>
               </div>
           <div class="form-group hide"  id="select-syndicates">
@@ -194,7 +195,7 @@
             </select>
           </div>
           <div class="modal-footer">
-              <button type="button" class="btn btn-primary" id="filter-type">Filtrar</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal"  id="filter-type">Filtrar</button>
           </div>
         </div>
         </div>
