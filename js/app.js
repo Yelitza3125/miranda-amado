@@ -139,10 +139,36 @@ function filterVigence(date) {
 
 }
 
-// Mostrar los 20 primeros
-
+let syndicate = document.getElementById('checkbox1');
+let industry = document.getElementById('checkbox2');
+let selectSyndicates = $('#select-syndicates');
+let selectIndustries = $('#select-industries');
 info.on('value', function (datos) {
   data = datos.val();
+  // Mostrar los filtros escogidos en el modal
+  syndicate.addEventListener('change', function() {
+    if(syndicate.checked === true) {
+     selectSyndicates.addClass('show');
+     selectSyndicates.removeClass('hide');
+    }
+
+    if(syndicate.checked === false) {
+      selectSyndicates.addClass('hide');
+      selectSyndicates.removeClass('show');
+    }
+  });
+
+  industry.addEventListener('change', function() {
+    if(industry.checked === true) {
+      selectIndustries.addClass('show');
+      selectIndustries.removeClass('hide');
+    }
+    if(industry.checked === false) {
+      selectIndustries.addClass('hide');
+      selectIndustries.removeClass('show');
+    }
+  });
+  // Mostrar los 20 primeros
   let news = data.slice(0,19);
   news.forEach(element => {
     let fecha = element.Suscripción;
@@ -159,9 +185,8 @@ info.on('value', function (datos) {
   $('.box').click(function () {
     window.open(`${element.URL}`, '_blank');
   });
-  });
+ });
 
-  
 });
 
 // Seleccionar tipo de filtro solo Empresa
