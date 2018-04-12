@@ -90,21 +90,32 @@ info.on('value', function (datos) {
 });
 
 
-function filterSuscription() {
+$('#suscripcion1').click(function(){
+  // ("#sprints").change(function () {
+    nsprint = $('select[id=suscripcion1]').val();
+  console.log(nsprint);
+    // $('#sprints').val($(this).val());
+})
+
+
+
+
+function filterSuscription(date) {
   let result = [];
   info.on('value', function (datos) {
     data = datos.val();
    
     data.forEach(function (element) {
-      if ((element.Suscripción).split) {
-        console.log((element.Suscripción).substr(0, 4))
+      if ((element.Suscripción).split()) {
+        // console.log((element.Suscripción).substr(0, 4))
+      result.push((element.Suscripción).substr(0, 4));
+      
       }
-      // result.push(element);
     });
+    localStorage.setItem('result', JSON.stringify(result))
+    
   });
-  return (result)
 }
-filterSuscription()
 
 
 // Filtro por Empresa
