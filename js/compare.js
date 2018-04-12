@@ -3,7 +3,7 @@ const compare = () => {
 
     let ObjConvenios = jQuery.parseJSON(localStorage.resultCompare);
     console.log(ObjConvenios);
-
+        let pdf='';
     ObjConvenios.forEach(element => {
         let fecha = element.Suscripción;
         let fechames = fecha.slice(0, 10);
@@ -40,7 +40,14 @@ const compare = () => {
 <div class="col-3 text-center">${element.Vigencia}</div> 
 <br>
 `);
+    pdf = new jsPDF();
+    pdf.text(20,20,`${element.Vigencia}!`);
 
     });
+    
+$('#ViewReport').click(function () {
+    pdf.save('mipdf.pdf');
+  });
 };
 compare();
+
