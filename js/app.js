@@ -107,12 +107,7 @@ info.on('value', function (datos) {
 });
 
 
-$('#suscripcion1').click(function () {
-  // ("#sprints").change(function () {
-  nsprint = $('select[id=suscripcion1]').val();
-  console.log(nsprint);
-  // $('#sprints').val($(this).val());
-})
+
 
 
 
@@ -219,14 +214,14 @@ info.on('value', function (datos) {
     </div>
   
     <div class="botones-container">
-      <button class="btn btn-detalles">
+      <button class="btn btn-detalles btn-view" id=${element["N°"]}>
       Ver detalles
       </button>
       <button class="btn btn-pdf text-blue-miranda"> Ver PDF
       </button>
     </div>
   </div>
-  <button id=${element["N°"]} class="btn-view">Ver más</button>
+  
   
   </div>
     </div>
