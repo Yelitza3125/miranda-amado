@@ -62,7 +62,7 @@ register.on('click', function () {
     Empresa: newCompany.val(),
     Incremento: newIncrement.val(),
     Industria: newIndustria.val(),
-    "N°": localStorage.getItem('lastItem') + 1,
+    "N°": parseInt(localStorage.getItem('lastItem')) + 1,
     Sindicato: newSindicato.val(),
     Suscripción: newSuscription.val(),
     Tipo: 'Convenio colectivo',

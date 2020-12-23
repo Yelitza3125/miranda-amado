@@ -54,7 +54,8 @@ body, html {
   background-color: #fff;
   border: 2px solid rgb(213, 120, 0);
   color: rgb(213, 120, 0);
-  margin: 10px 0 10px 0
+  margin: 10px 0 10px 0;
+  visibility: hidden;
 }
 
 .custom-file-label {
