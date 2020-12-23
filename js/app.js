@@ -122,7 +122,6 @@ function filterSuscription(date) {
 
     data.forEach(function (element) {
       if ((element.Suscripción).toString().substr(0, 4) === date) {
-        // console.log((element.Suscripción).substr(0, 4))
         resultSuscription.push(element);
 
       }
