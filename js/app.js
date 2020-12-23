@@ -54,7 +54,7 @@ info.on('value', function (datos) {
       console.log(resultCompany);
    
     
-      resultCompany.forEach((element, index) => {
+      resultCompany.forEach(element => {
 
         let fecha = element.Suscripción;
         let fechames = fecha.slice(0, 10);
@@ -88,7 +88,7 @@ info.on('value', function (datos) {
         `);
 
         $('.btn-pdf').click(function () {
-          if($(this).attr("data-el") == (index+1))
+          if($(this).attr("data-el") == element["N°"])
             window.open(`${element.URL}`, '_blank');
         });
       })
@@ -428,7 +428,7 @@ $('#filter-type').on('click', function () {
     filterCompany(nameCompany);
     let dataResult = localStorage.result;
     let array = JSON.parse(dataResult);
-    array.forEach((element, index) => {
+    array.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
       let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
@@ -459,7 +459,7 @@ $('#filter-type').on('click', function () {
   
       $('#container-box').append(tem);
       $('.btn-pdf').click(function () {
-        if($(this).attr("data-el") == (index+1))
+        if($(this).attr("data-el") == element["N°"])
           window.open(`${element.URL}`, '_blank');
       });
     });
@@ -469,7 +469,7 @@ $('#filter-type').on('click', function () {
     filterSyndicate($('select[id=select-2]').val());
     let dataSyndicate = localStorage.syndicate;
     let arraySyndicate = JSON.parse(dataSyndicate);
-    arraySyndicate.forEach((element, index) => {
+    arraySyndicate.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
       let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
@@ -501,7 +501,7 @@ $('#filter-type').on('click', function () {
 
     $('#container-box').append(tem);
     $('.btn-pdf').click(function () {
-      if($(this).attr("data-el") == (index+1))
+      if($(this).attr("data-el") == element["N°"])
         window.open(`${element.URL}`, '_blank');
     });
     });
@@ -512,7 +512,7 @@ $('#filter-type').on('click', function () {
     filterIndustry($('select[id=select-3]').val());
     let dataIndustry = localStorage.industry;
     let arrayIndustry = JSON.parse(dataIndustry);
-    arrayIndustry.forEach((element, index) => {
+    arrayIndustry.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
       let template2 = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
@@ -544,7 +544,7 @@ $('#filter-type').on('click', function () {
   
       $('#container-box').append(template2);
       $('.btn-pdf').click(function () {
-        if($(this).attr("data-el") == (index+1))
+        if($(this).attr("data-el") == element["N°"])
           window.open(`${element.URL}`, '_blank');
       });
     });
@@ -553,7 +553,7 @@ $('#filter-type').on('click', function () {
     filterVigence(ageVigence);
     let dataResult = localStorage.resultDateVig;
     let array = JSON.parse(dataResult);
-    array.forEach((element, index) => {
+    array.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
       let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
@@ -585,7 +585,7 @@ $('#filter-type').on('click', function () {
 
     $('#container-box').append(tem);
     $('.btn-pdf').click(function () {
-      if($(this).attr("data-el") == (index+1))
+      if($(this).attr("data-el") == element["N°"])
         window.open(`${element.URL}`, '_blank');
     });
     });
@@ -595,7 +595,7 @@ $('#filter-type').on('click', function () {
     filterSuscription(suscripcion);
     let dataResult = localStorage.resultSuscription;
     let array = JSON.parse(dataResult);
-    array.forEach((element, index) => {
+    array.forEach(element => {
       let fecha = element.Suscripción;
       let fechames = fecha.slice(0, 10);
       let tem = `<div class="col-12 col-lg-4"><div class="container-convenio m-3">
@@ -627,7 +627,7 @@ $('#filter-type').on('click', function () {
 
     $('#container-box').append(tem);
     $('.btn-pdf').click(function () {
-      if($(this).attr("data-el") == (index+1))
+      if($(this).attr("data-el") == element["N°"])
         window.open(`${element.URL}`, '_blank');
     });
     });
